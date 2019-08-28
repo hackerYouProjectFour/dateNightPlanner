@@ -1,3 +1,8 @@
+// ZOMATO API KEYS
+// 9ab73e55b485303a844c8e0f5d16d2c9
+// 97641d101a3b203687e053667fcd3898
+
+
 // Create app namespace to hold all methods
 const app = {};
 
@@ -5,7 +10,7 @@ app.restaurantApp = {};
 app.restaurantApp.queryParams = {};
 app.restaurantApp.queryParams.queryRestaurantUrl = 'https://developers.zomato.com/api/v2.1/search';
 app.restaurantApp.queryParams.queryCuisineUrl = 'https://developers.zomato.com/api/v2.1/cuisines';
-app.restaurantApp.queryParams.apiKey = '9ab73e55b485303a844c8e0f5d16d2c9';
+app.restaurantApp.queryParams.apiKey = '97641d101a3b203687e053667fcd3898';
 app.restaurantApp.queryParams.cityCode = 89;
 app.restaurantApp.queryParams.entity = 'city';
 app.restaurantApp.queryParams.count = 20;

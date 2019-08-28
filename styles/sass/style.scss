@@ -1,0 +1,22 @@
+@import "setup";
+
+*{
+    border: 2px solid tomato;
+}
+
+// HERO STYLES
+
+.hero{
+    height: 100vh;
+    background-image: url(../assets/hero.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    .jumbotron{
+        background: rgba(255, 255, 255, 0.9);
+        margin: 30vh auto;
+        padding:20px;
+        width: 50%;
+        text-align: center;
+    }
+
+}
