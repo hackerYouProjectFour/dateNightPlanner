@@ -140,14 +140,11 @@ movieApp.storeData = function () {
             if (movieApp.theatreList.includes(theatreName)) {
                 movieApp.movieObj[theatreName][movieName] = [];  
             }
-            // console.log(item.showtimes.length);
             for (i = 0; i < item.showtimes.length; i++) {
                 showTimes.push(item.showtimes[i].dateTime);
             };
-
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
-        // console.log(fullData);
         console.log(movieApp.movieObj);
     });
 };
