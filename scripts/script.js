@@ -100,7 +100,7 @@ restaurantApp.displayInfo = function(place) {
                 <div class="stars">FUNCTION THAT RENDERS STAR RATING IS CALLED HERE</div>
             </div>
             <div class="show-movie flex">
-                <button>-></button>
+                <button value="${place.restaurant.location.zipcode}">-></button>
             </div>
         </div>
     `);
@@ -117,8 +117,9 @@ restaurantApp.init = () => {
 const movieApp = {};
 
 movieApp.showtimeUrl = `http://data.tmsapi.com/v1.1/movies/showings`;
-movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
-movieApp.zip = `M6K 3R4`;
+// movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
+movieApp.apiKey = `gzt7vyqbw7ukmn5z5a7kt4um`;
+movieApp.zip = ``;
 movieApp.radius = 3;
 movieApp.units = `km`;
 movieApp.theatreList = {};
@@ -138,7 +139,7 @@ movieApp.pullData = function () {
             radius: movieApp.radius,
             units: movieApp.units
         },
-    });
+    })
 };
 movieApp.getTodaysDate = function () {
     const today = new Date();
@@ -169,13 +170,36 @@ movieApp.storeData = function () {
             };
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
+        movieApp.addTheatre();
+        movieApp.addMovies();
         console.log(movieApp.movieObj);
+
     });
+};
+
+movieApp.addTheatre = function() {
+    for (let theatre in movieApp.movieObj) {
+        $('.movie-area').append(`
+            <div class="theatre-card flex column">
+            <h3>${theatre}</h3>
+            </div>
+        `);
+    }
+}
+
+
+
+movieApp.displayOptions = function() {
+    $('.card-area').on('click', 'button', function(){
+        movieApp.zip = $(this).val();
+        movieApp.storeData();
+        console.log(movieApp.zip);
+    })
 };
 
 movieApp.init = function () {
     movieApp.getTodaysDate();
-    movieApp.storeData();
+    movieApp.displayOptions();
 }
 
 // Both come togethere here
@@ -186,4 +210,5 @@ app.init = function () {
 }
 $(function() {
     app.init();
+   
 });
