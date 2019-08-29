@@ -6,32 +6,33 @@
 // Create app namespace to hold all methods
 const app = {};
 
-app.restaurantApp = {};
-app.restaurantApp.queryParams = {};
-app.restaurantApp.queryParams.queryRestaurantUrl = 'https://developers.zomato.com/api/v2.1/search';
-app.restaurantApp.queryParams.queryCuisineUrl = 'https://developers.zomato.com/api/v2.1/cuisines';
-app.restaurantApp.queryParams.apiKey = '97641d101a3b203687e053667fcd3898';
-app.restaurantApp.queryParams.cityCode = 89;
-app.restaurantApp.queryParams.entity = 'city';
-app.restaurantApp.queryParams.count = 20;
-app.restaurantApp.queryParams.offset = 0;
-app.restaurantApp.restaurants = [];
-app.restaurantApp.cuisines = [];
+// This ine here holds the restaurant portion of the code
+restaurantApp = {};
+restaurantApp.queryParams = {};
+restaurantApp.queryParams.queryRestaurantUrl = 'https://developers.zomato.com/api/v2.1/search';
+restaurantApp.queryParams.queryCuisineUrl = 'https://developers.zomato.com/api/v2.1/cuisines';
+restaurantApp.queryParams.apiKey = '97641d101a3b203687e053667fcd3898';
+restaurantApp.queryParams.cityCode = 89;
+restaurantApp.queryParams.entity = 'city';
+restaurantApp.queryParams.count = 20;
+restaurantApp.queryParams.offset = 0;
+restaurantApp.restaurants = [];
+restaurantApp.cuisines = [];
 
 // Make AJAX call to zomato to get the list of restaurants ad put them on the page
 
-app.restaurantApp.getRestaurantsList = () => {
+restaurantApp.getRestaurantsList = () => {
     $.ajax({
         type: 'GET',
-        url: app.restaurantApp.queryParams.queryCuisineUrl,
+        url: restaurantApp.queryParams.queryCuisineUrl,
         data: {
-            apikey : app.restaurantApp.queryParams.apiKey,
-            city_id : app.restaurantApp.queryParams.cityCode
+            apikey : restaurantApp.queryParams.apiKey,
+            city_id : restaurantApp.queryParams.cityCode
         },
         dataType: 'json'
     }).then(res => {
         res.cuisines.forEach( item => {
-            app.restaurantApp.cuisines.push({
+            restaurantApp.cuisines.push({
                 name: item.cuisine.cuisine_name,
                 code: item.cuisine.cuisine_id
             });
@@ -41,43 +42,43 @@ app.restaurantApp.getRestaurantsList = () => {
 }
 
 // Collect user input
-app.restaurantApp.getRestorantInfo = () => {
+restaurantApp.getRestorantInfo = () => {
     // Creat object to hold user picked info
-    app.restaurantApp.userPicks = {};
+    restaurantApp.userPicks = {};
     $('.dinnerForm').on('submit', (e) =>{
         // Empty array from any previous results
-        app.restaurantApp.restaurants = [];
+        restaurantApp.restaurants = [];
         e.preventDefault();
         $('.card-area').html('');
-        app.restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
-        app.restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
-        app.restaurantApp.getInfo();
+        restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
+        restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
+        restaurantApp.getInfo();
     });
 }
 
 // Make AJAX request with user inputted to the zomato 
-app.restaurantApp.getInfo = () => {
+restaurantApp.getInfo = () => {
     // make api call
     $.ajax({
         type: 'GET',
-        url: app.restaurantApp.queryParams.queryRestaurantUrl,
+        url: restaurantApp.queryParams.queryRestaurantUrl,
         data: {
-            apikey : app.restaurantApp.queryParams.apiKey,
-            entity_id : app.restaurantApp.queryParams.cityCode,
-            entity_type : app.restaurantApp.queryParams.entity,
-            count : app.restaurantApp.queryParams.count,
-            cuisines : app.restaurantApp.queryParams.cuisine,
-            start : app.restaurantApp.queryParams.offset
+            apikey : restaurantApp.queryParams.apiKey,
+            entity_id : restaurantApp.queryParams.cityCode,
+            entity_type : restaurantApp.queryParams.entity,
+            count : restaurantApp.queryParams.count,
+            cuisines : restaurantApp.queryParams.cuisine,
+            start : restaurantApp.queryParams.offset
         },
         dataType: 'json'
     }).then((res) => {
         // save resuls from the array.
         console.log(res);
         res.restaurants.forEach(function(place) {
-            if (place.restaurant.price_range === app.restaurantApp.queryParams.price){
-                app.restaurantApp.restaurants.push(place.restaurant);
+            if (place.restaurant.price_range === restaurantApp.queryParams.price){
+                restaurantApp.restaurants.push(place.restaurant);
                 // this one here supposed to to display shit to the page but theres some kind of weird shit going on!!!!!!!!!!!!!
-                app.restaurantApp.displayInfo(place);
+                restaurantApp.displayInfo(place);
             }
             // if (!app.restaurantApp.restaurants.length){
             //     alert('nothing found chech again');
@@ -88,7 +89,7 @@ app.restaurantApp.getInfo = () => {
 }
 
 // Display restaurant  data on the page
-app.restaurantApp.displayInfo = function(place) {
+restaurantApp.displayInfo = function(place) {
     console.log(place);
     $('.card-area').append(`
         <div class="restaurant-card flex">
@@ -104,12 +105,15 @@ app.restaurantApp.displayInfo = function(place) {
         </div>
     `);
 }
-// Start app
-app.init = () => {
-    app.restaurantApp.getRestaurantsList();
-    app.restaurantApp.getRestorantInfo();
+// Start reastaurant app
+restaurantApp.init = () => {
+    restaurantApp.getRestaurantsList();
+    restaurantApp.getRestorantInfo();
 }
 
+// ================================================================================================
+// this on here contains the movie theatre portions of the code
+// ================================================================================================
 const movieApp = {};
 
 movieApp.showtimeUrl = `http://data.tmsapi.com/v1.1/movies/showings`;
@@ -174,7 +178,12 @@ movieApp.init = function () {
     movieApp.storeData();
 }
 
+// Both come togethere here
+
+app.init = function () {
+    restaurantApp.init();
+    movieApp.init();  
+}
 $(function() {
     app.init();
-    movieApp.init();  
 });
