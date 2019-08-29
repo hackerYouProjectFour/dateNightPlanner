@@ -56,7 +56,6 @@ h2{
 .queries{
     min-height:100vh;
     .dinner{
-        color:red;
         .restaurant-card{
             padding: 30px;
         }
@@ -68,6 +67,11 @@ h2{
 
 // DINNER STYLES
 .dinner{
+    .restaurant-card{
+        margin:10px;
+        border-radius: 5px;
+        background: #000;
+    }
     .restaurant-picture{
         img{
             width:165px;

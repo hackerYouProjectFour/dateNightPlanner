@@ -242,10 +242,6 @@ h2 {
   min-height: 100vh;
 }
 
-.queries .dinner {
-  color: red;
-}
-
 .queries .dinner .restaurant-card {
   padding: 30px;
 }
@@ -254,6 +250,12 @@ h2 {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+
+.dinner .restaurant-card {
+  margin: 10px;
+  border-radius: 5px;
+  background: #000;
 }
 
 .dinner .restaurant-picture img {
