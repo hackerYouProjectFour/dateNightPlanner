@@ -77,7 +77,6 @@ restaurantApp.getInfo = () => {
         res.restaurants.forEach(function(place) {
             if (place.restaurant.price_range === restaurantApp.queryParams.price){
                 restaurantApp.restaurants.push(place.restaurant);
-                // this one here supposed to to display shit to the page but theres some kind of weird shit going on!!!!!!!!!!!!!
                 restaurantApp.displayInfo(place);
             }
             // if (!app.restaurantApp.restaurants.length){
@@ -88,6 +87,28 @@ restaurantApp.getInfo = () => {
     })
 }
 
+// This function over here makes stars appear in the rating
+restaurantApp.starRating = (rating) => {
+    let starArray = [];
+    if (!isNaN(rating) && 0 <= rating && rating <= 5 ){
+        const halfStar = rating % 1;
+        const fullStar = Math.floor(rating);
+        
+        for (let i = 0; i < fullStar; i++){
+            starArray.push('<i class="fas fa-star"></i>');
+        }
+
+        if (halfStar) {
+            starArray.push('<i class="fas fa-star-half"></i>');
+        }
+        
+        starString = "";
+        starArray.forEach((star)=>{
+            starString = starString + star;
+        })
+        return starString;
+    }
+}
 // Display restaurant  data on the page
 restaurantApp.displayInfo = function(place) {
     console.log(place);
@@ -97,10 +118,10 @@ restaurantApp.displayInfo = function(place) {
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
                 <p class="phone">${place.restaurant.phone_numbers}</p>
-                <div class="stars">FUNCTION THAT RENDERS STAR RATING IS CALLED HERE</div>
+                <div class="stars">${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
             <div class="show-movie flex">
-                <button>-></button>
+                <button value="${place.restaurant.location.zipcode}">-></button>
             </div>
         </div>
     `);
