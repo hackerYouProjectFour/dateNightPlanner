@@ -14,20 +14,41 @@
             <a href="#cuisine"><button>Start</button></a>
         </div>
     </section>
-    <section class="dinner">
-        <form action="" class="dinnerForm">
-            <select name="cuisine" id="cuisine">
-               <!-- Dynamic menue goes in here -->
-            </select>
-
-            <select name="price" id="price">
-                <option value="1">$</option>
-                <option value="2">$$</option>
-                <option value="3">$$$</option>
-                <option value="4">$$$$</option>
-            </select>
-            <input type="submit">
-        </form>
+    <section class="queries flex">
+        <section class="dinner basis50">
+            <div class="form-container">
+                <h2>Dinner goes here</h2>
+                <form action="" class="dinnerForm flex form">
+                    <select name="cuisine" id="cuisine">
+                       <!-- Dynamic menue goes in here -->
+                    </select>
+        
+                    <select name="price" id="price">
+                        <option value="1">$</option>
+                        <option value="2">$$</option>
+                        <option value="3">$$$</option>
+                        <option value="4">$$$$</option>
+                    </select>
+                    <input type="submit">
+                </form>
+            </div>
+            <div class="card-area">
+                <div class="restaurant-card flex">
+                    <div class="card-content basis100">
+                        <h3>restaurant name goes here</h3>
+                        <p class="address"> 69 Dark St. <br/> Shanty Town<br/> A1B 2C3</p>
+                        <p class="phone">123-042-6969</p>
+                        <div class="stars">Rating: *****</div>
+                    </div>
+                    <div class="show-movie flex">
+                        <button>></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="movies basis50">
+            <h2>Movies GO here</h2>
+        </section>
     </section>
     
     <script
@@ -35,5 +56,6 @@
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/customSelect.js"></script>
 </body>
 </html>

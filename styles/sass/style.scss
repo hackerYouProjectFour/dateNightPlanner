@@ -1,7 +1,36 @@
 @import "setup";
 
+// GENERAL STYLES
 *{
     border: 2px solid tomato;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h2{
+    text-align: center;
+}
+
+.flex{
+    display:flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.row{
+    flex-direction:row;
+}
+
+.basis100{
+    flex-basis:100%;
+}
+
+.basis50{
+    flex-basis: 50%;
 }
 
 // HERO STYLES
@@ -11,12 +40,37 @@
     background-image: url(../assets/hero.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    padding-top:30vh;
     .jumbotron{
-        background: rgba(255, 255, 255, 0.9);
-        margin: 30vh auto;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 30px;
+        margin: 0 auto;
         padding:20px;
         width: 50%;
         text-align: center;
     }
+
+}
+
+// QUERIES STYLES
+.queries{
+    min-height:100vh;
+    .dinner{
+        color:red;
+        .restaurant-card{
+            padding: 30px;
+        }
+        .form{
+            justify-content: space-evenly;
+        }
+    }
+}
+
+// DINNER STYLES
+
+
+// MOVIES STYLES
+
+.movies{
 
 }

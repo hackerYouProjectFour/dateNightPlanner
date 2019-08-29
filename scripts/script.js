@@ -76,19 +76,38 @@ app.restaurantApp.getInfo = () => {
         dataType: 'json'
     }).then((res) => {
         // save resuls from the array.
-        res.restaurants.forEach((place) => {
+        res.restaurants.forEach(function(place) {
             if (place.restaurant.price_range === app.restaurantApp.queryParams.price){
                 app.restaurantApp.restaurants.push(place.restaurant);
-                console.log(place.restaurant.name);
+                console.log(place);
+                // this one here supposed to to display shit to the page but theres some kind of weird shit going on!!!!!!!!!!!!!
+                app.restaurantApp.displayInfo(place);
+            }
+            if (!app.restaurantApp.restaurants.length){
+                // alert('nothing found chech again');
             }
         });
         
     })
 }
 
-// Display data on the page
-app.displayInfo = function() {
-
+// Display restaurant  data on the page
+app.restaurantApp.displayInfo = function(place) {
+    $('.card-area').append(`
+        <div class="card-area">
+            <div class="restaurant-card flex">
+                <div class="card-content basis100">
+                    <h3>NAME GOES HERE</h3>
+                    <p class="address"> ADDRESS GOES HERE</p>
+                    <p class="phone">PHONE GOES HERE</p>
+                    <div class="stars">FUNCTION THAT RENDERS STAR RATING IS CALLED HERE</div>
+                </div>
+                <div class="show-movie flex">
+                    <button>-></button>
+                </div>
+            </div>
+        </div>
+    `);
 }
 
 // Start app
