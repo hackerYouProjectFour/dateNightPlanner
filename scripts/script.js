@@ -48,14 +48,10 @@ app.restaurantApp.getRestorantInfo = () => {
         // Empty array from any previous results
         app.restaurantApp.restaurants = [];
         e.preventDefault();
+        $('.card-area').html('');
         app.restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
         app.restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
-        
-        // this loop is required because api returns only 20 results at a time
-        for(let i = 0; i<=100; i = i + 20){
-            app.restaurantApp.getInfo();
-            app.restaurantApp.queryParams.offset = i;
-        }
+        app.restaurantApp.getInfo();
     });
 }
 
@@ -76,16 +72,16 @@ app.restaurantApp.getInfo = () => {
         dataType: 'json'
     }).then((res) => {
         // save resuls from the array.
+        console.log(res);
         res.restaurants.forEach(function(place) {
             if (place.restaurant.price_range === app.restaurantApp.queryParams.price){
                 app.restaurantApp.restaurants.push(place.restaurant);
-                console.log(place);
                 // this one here supposed to to display shit to the page but theres some kind of weird shit going on!!!!!!!!!!!!!
                 app.restaurantApp.displayInfo(place);
             }
-            if (!app.restaurantApp.restaurants.length){
-                // alert('nothing found chech again');
-            }
+            // if (!app.restaurantApp.restaurants.length){
+            //     alert('nothing found chech again');
+            // }
         });
         
     })
@@ -93,18 +89,17 @@ app.restaurantApp.getInfo = () => {
 
 // Display restaurant  data on the page
 app.restaurantApp.displayInfo = function(place) {
+    console.log(place);
     $('.card-area').append(`
-        <div class="card-area">
-            <div class="restaurant-card flex">
-                <div class="card-content basis100">
-                    <h3>NAME GOES HERE</h3>
-                    <p class="address"> ADDRESS GOES HERE</p>
-                    <p class="phone">PHONE GOES HERE</p>
-                    <div class="stars">FUNCTION THAT RENDERS STAR RATING IS CALLED HERE</div>
-                </div>
-                <div class="show-movie flex">
-                    <button>-></button>
-                </div>
+        <div class="restaurant-card flex">
+            <div class="card-content basis100">
+                <h3>${place.restaurant.name}</h3>
+                <p class="address"> ${place.restaurant.location.address}</p>
+                <p class="phone">${place.restaurant.phone_numbers}</p>
+                <div class="stars">FUNCTION THAT RENDERS STAR RATING IS CALLED HERE</div>
+            </div>
+            <div class="show-movie flex">
+                <button>-></button>
             </div>
         </div>
     `);
