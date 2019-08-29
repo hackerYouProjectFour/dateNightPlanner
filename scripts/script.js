@@ -120,6 +120,9 @@ restaurantApp.displayInfo = function(place) {
                 <p class="phone">${place.restaurant.phone_numbers}</p>
                 <div class="stars">${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
+            <div class="restaurant-picture flex">
+                <img src="${place.restaurant.featured_image}" alt="">
+            </div>
             <div class="show-movie flex">
                 <button value="${place.restaurant.location.zipcode}">-></button>
             </div>

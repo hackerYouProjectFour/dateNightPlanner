@@ -67,7 +67,15 @@ h2{
 }
 
 // DINNER STYLES
-
+.dinner{
+    .restaurant-picture{
+        img{
+            width:165px;
+            height: auto;
+            align-self: center;
+        }
+    }
+}
 
 // MOVIES STYLES
 
