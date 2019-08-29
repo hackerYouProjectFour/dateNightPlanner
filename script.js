@@ -116,23 +116,30 @@ movieApp.pullData = function () {
         },
     });
 };
+// Generates the Current Date to perform the API call.
 movieApp.getTodaysDate = function () {
     const today = new Date();
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 }
+// Generates the appropriate information required & stores it in an object to be displayed on the page
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
-        const duplicateTheatres = [];
+        // Stores all the results of the API for further action
         const fullData = results;
+        // Stores the list of theatres names (includes duplicates from API)
+        const duplicateTheatres = [];
+        // Insets the list of theatres from API (including Duplicates)
         results.forEach(function(result){
             duplicateTheatres.push(result.showtimes[0].theatre.name); 
         })
+        // Removes Duplicate Theatre Items and places them into movieObj
         const uniqueSet = new Set(duplicateTheatres);
         movieApp.theatreList = [...uniqueSet];
         movieApp.theatreList.forEach(function(item){
             movieApp.movieObj[item] = {};
         })
+        // Pulls movie name and showtimes and stores them in the appropriate theatre object
         fullData.forEach(function (item) {
             let movieName = item.title;
             let theatreName = item.showtimes[0].theatre.name;
@@ -145,7 +152,6 @@ movieApp.storeData = function () {
             };
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
-        console.log(movieApp.movieObj);
     });
 };
 
