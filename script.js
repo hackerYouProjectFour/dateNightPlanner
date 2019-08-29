@@ -100,6 +100,7 @@ movieApp.units = `km`;
 movieApp.theatreList = {};
 movieApp.data = [];
 movieApp.theatres = [];
+movieApp.movieObj = {};
 movieApp.pullData = function () {
     return $.ajax({
         url: movieApp.showtimeUrl,
@@ -123,14 +124,32 @@ movieApp.getTodaysDate = function () {
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
+        const fullData = results;
         results.forEach(function(result){
-            duplicateTheatres.push(result.showtimes[0].theatre.name);
+            duplicateTheatres.push(result.showtimes[0].theatre.name); 
         })
         const uniqueSet = new Set(duplicateTheatres);
         movieApp.theatreList = [...uniqueSet];
-        console.log(movieApp.theatreList);
-    });
+        movieApp.theatreList.forEach(function(item){
+            movieApp.movieObj[item] = {};
+        })
+        fullData.forEach(function (item) {
+            let movieName = item.title;
+            let theatreName = item.showtimes[0].theatre.name;
+            let showTimes = [];
+            if (movieApp.theatreList.includes(theatreName)) {
+                movieApp.movieObj[theatreName][movieName] = [];  
+            }
+            // console.log(item.showtimes.length);
+            for (i = 0; i < item.showtimes.length; i++) {
+                showTimes.push(item.showtimes[i].dateTime);
+            };
 
+            movieApp.movieObj[theatreName][movieName].push(showTimes);
+        });
+        // console.log(fullData);
+        console.log(movieApp.movieObj);
+    });
 };
 
 movieApp.init = function () {
