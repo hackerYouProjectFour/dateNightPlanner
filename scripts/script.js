@@ -134,18 +134,19 @@ movieApp.pullData = function () {
         data: {
             api_key: movieApp.apiKey,
             startDate: movieApp.getTodaysDate,
-            //TO BE CHANGED
             zip: movieApp.zip,
             radius: movieApp.radius,
             units: movieApp.units
         },
     })
 };
+
 movieApp.getTodaysDate = function () {
     const today = new Date();
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 }
+
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
@@ -171,23 +172,32 @@ movieApp.storeData = function () {
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
         movieApp.addTheatre();
-        movieApp.addMovies();
-        console.log(movieApp.movieObj);
-
     });
 };
 
 movieApp.addTheatre = function() {
     for (let theatre in movieApp.movieObj) {
         $('.movie-area').append(`
-            <div class="theatre-card flex column">
+            <div class='theatre-card ${theatre.replace(/[^a-zA-Z0-9]/g, "")} flex column'>
             <h3>${theatre}</h3>
             </div>
         `);
-    }
+        for (let movie in movieApp.movieObj[theatre]) {
+            $(`.${theatre.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
+                <div class='${movie.replace(/[^a-zA-Z0-9]/g, "")}'>
+                <h4>${movie}</h4>
+                </div>
+            `);
+            movieApp.movieObj[theatre][movie].forEach(function(){
+                $(`.${movie.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
+                        <div class="showtimes column flex">
+                        <p>${movieApp.movieObj[theatre][movie]}</p>
+                        </div>
+                `);
+            });
+        };
+    };
 }
-
-
 
 movieApp.displayOptions = function() {
     $('.card-area').on('click', 'button', function(){
