@@ -226,6 +226,10 @@ h2 {
       flex-basis: 50%;
 }
 
+fieldset {
+  border: none;
+}
+
 .hero {
   height: 100vh;
   background-image: url(../assets/hero.jpg);
@@ -245,25 +249,47 @@ h2 {
 
 .queries {
   min-height: 100vh;
+  background: #f6f6f6;
 }
 
 .dinner .restaurant-card {
   margin: 10px;
   padding: 30px;
   border-radius: 5px;
-  background: #fce38a;
+  background: #f9e090;
+  border: 2px solid #dc5353;
+}
+
+.dinner .restaurant-card button {
+  background: #ff935c;
+  color: #f6f6f6;
+  border: 2px solid #dc5353;
+  border-radius: 5px;
+}
+
+.dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus {
+  color: #dc5353;
+  background: #f6f6f6;
+}
+
+.dinner .restaurant-card .star {
+  color: #dc5353;
 }
 
 .dinner .restaurant-picture img {
-  width: 165px;
+  max-width: 170px;
   height: auto;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  margin: 5px;
 }
 
 .dinner .form {
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #dc5353;
+  margin: 10px;
+  padding: 20px;
 }

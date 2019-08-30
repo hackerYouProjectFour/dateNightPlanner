@@ -101,11 +101,11 @@ restaurantApp.starRating = (rating) => {
         const fullStar = Math.floor(rating);
         
         for (let i = 0; i < fullStar; i++){
-            starArray.push('<i class="fas fa-star"></i>');
+            starArray.push('<i class="fas fa-star star"></i>');
         }
 
         if (halfStar) {
-            starArray.push('<i class="fas fa-star-half"></i>');
+            starArray.push('<i class="fas fa-star-half star"></i>');
         }
         
         starString = "";

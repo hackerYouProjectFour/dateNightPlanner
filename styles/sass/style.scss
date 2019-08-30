@@ -1,5 +1,11 @@
 @import "setup";
 
+// VARIABLES
+$primary : #f9e090;
+$secondary: #ff935c;
+$accent1 : #dc5353;
+$accent2: #f6f6f6;
+
 // GENERAL STYLES
 *{
     border: 2px solid tomato;
@@ -38,6 +44,10 @@ h2{
     flex-basis: 50%;
 }
 
+fieldset{
+    border:none;
+}
+
 // HERO STYLES
 
 .hero{
@@ -60,25 +70,48 @@ h2{
 // QUERIES STYLES
 .queries{
     min-height:100vh;
+    background: #f6f6f6;
 }
 
 // DINNER STYLES
 .dinner{
+
     .restaurant-card{
         margin:10px;
         padding: 30px;
         border-radius: 5px;
-        background: #fce38a;
+        background: $primary;
+        border: 2px solid $accent1;
+        
+        button{
+            background: $secondary;
+            color:$accent2;
+            border:2px solid $accent1;
+            border-radius: 5px;
+        }
+
+        button:hover, button:focus{
+            color: $accent1;
+            background: $accent2;
+        }
+
+        .star{
+            color:$accent1;
+        }
     }
     .restaurant-picture{
         img{
-            width:165px;
+            max-width:170px;
             height: auto;
             align-self: center;
+            margin: 5px;
         }
     }
     .form{
-        justify-content: space-evenly;
+        align-items: center;
+        border: 2px solid $accent1;
+        margin:10px;
+        padding: 20px;
     }
 }
 

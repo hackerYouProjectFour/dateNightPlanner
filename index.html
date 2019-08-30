@@ -17,19 +17,25 @@
     <section class="queries wrapper flex">
         <section class="dinner basis50">
             <div class="form-container">
-                <h2>Dinner goes here</h2>
-                <form action="" class="dinnerForm flex form">
-                    <select name="cuisine" id="cuisine">
-                       <!-- Dynamic menue goes in here -->
-                    </select>
-        
-                    <select name="price" id="price">
-                        <option value="1">$</option>
-                        <option value="2">$$</option>
-                        <option value="3">$$$</option>
-                        <option value="4">$$$$</option>
-                    </select>
-                    <input type="submit">
+                <h2>Pick Your Dining preferences:</h2>
+                <form action="" class="dinnerForm flex column form">
+                    <fieldset class="form-cuisine">
+                        <label for="cuisine">Pick the cuisine:</label>
+                        <select name="cuisine" id="cuisine">
+                           <!-- Dynamic menue goes in here -->
+                        </select>
+                    </fieldset>
+                    
+                    <fieldset class="form-price">
+                        <label for="price">Pick the price range:</label>
+                        <select name="price" id="price">
+                            <option value="1">$</option>
+                            <option value="2">$$</option>
+                            <option value="3">$$$</option>
+                            <option value="4">$$$$</option>
+                        </select>
+                    </fieldset>
+                    <input type="submit" value="Search">
                 </form>
             </div>
             <div class="card-area">
