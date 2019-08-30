@@ -8,7 +8,7 @@ $accent2: #f6f6f6;
 
 // GENERAL STYLES
 *{
-    border: 2px solid tomato;
+    // border: 2px solid tomato;
 }
 
 html {
@@ -79,7 +79,7 @@ fieldset{
     .restaurant-card{
         margin:10px;
         padding: 30px;
-        border-radius: 5px;
+        border-radius: 10px;
         background: $primary;
         border: 2px solid $accent1;
         
@@ -87,7 +87,7 @@ fieldset{
             background: $secondary;
             color:$accent2;
             border:2px solid $accent1;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         button:hover, button:focus{
@@ -110,8 +110,11 @@ fieldset{
     .form{
         align-items: center;
         border: 2px solid $accent1;
+        border-radius: 10px;
         margin:10px;
         padding: 20px;
+        background:$secondary;  
+        
     }
 }
 

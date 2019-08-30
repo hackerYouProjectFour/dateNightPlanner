@@ -99,7 +99,9 @@ restaurantApp.starRating = (rating) => {
         // convert the decimal stars to half stars because 
         const halfStar = rating % 1;
         const fullStar = Math.floor(rating);
-        
+        if(!rating){
+            return "Not rated yet."
+        }
         for (let i = 0; i < fullStar; i++){
             starArray.push('<i class="fas fa-star star"></i>');
         }
@@ -127,7 +129,7 @@ restaurantApp.displayInfo = function(place) {
                 <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
             <div class="restaurant-picture flex">
-                <img src="${place.restaurant.featured_image}" alt="">
+                <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
             </div>
             <div class="show-movie flex">
                 <button value="${place.restaurant.location.zipcode}">-></button>

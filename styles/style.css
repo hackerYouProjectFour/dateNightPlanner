@@ -179,10 +179,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden;
 }
 
-* {
-  border: 2px solid tomato;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -255,7 +251,7 @@ fieldset {
 .dinner .restaurant-card {
   margin: 10px;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
   background: #f9e090;
   border: 2px solid #dc5353;
 }
@@ -264,7 +260,7 @@ fieldset {
   background: #ff935c;
   color: #f6f6f6;
   border: 2px solid #dc5353;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus {
@@ -290,6 +286,8 @@ fieldset {
       -ms-flex-align: center;
           align-items: center;
   border: 2px solid #dc5353;
+  border-radius: 10px;
   margin: 10px;
   padding: 20px;
+  background: #ff935c;
 }
