@@ -9,6 +9,11 @@ html {
     scroll-behavior: smooth;
 }
 
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 h2{
     text-align: center;
 }
@@ -55,22 +60,15 @@ h2{
 // QUERIES STYLES
 .queries{
     min-height:100vh;
-    .dinner{
-        .restaurant-card{
-            padding: 30px;
-        }
-        .form{
-            justify-content: space-evenly;
-        }
-    }
 }
 
 // DINNER STYLES
 .dinner{
     .restaurant-card{
         margin:10px;
+        padding: 30px;
         border-radius: 5px;
-        background: #000;
+        background: #fce38a;
     }
     .restaurant-picture{
         img{
@@ -78,6 +76,9 @@ h2{
             height: auto;
             align-self: center;
         }
+    }
+    .form{
+        justify-content: space-evenly;
     }
 }
 

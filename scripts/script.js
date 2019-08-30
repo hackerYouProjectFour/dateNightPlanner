@@ -52,7 +52,10 @@ restaurantApp.getRestorantInfo = () => {
         $('.card-area').html('');
         restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
         restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
-        restaurantApp.getInfo();
+        for(let i = 0; i<=100; i = i+20){
+            restaurantApp.queryParams.offset = i;
+            restaurantApp.getInfo();
+        }    
     });
 }
 
@@ -75,7 +78,7 @@ restaurantApp.getInfo = () => {
         // save resuls from the array.
         console.log(res);
         res.restaurants.forEach(function(place) {
-            if (place.restaurant.price_range === restaurantApp.queryParams.price){
+            if (place.restaurant.price_range === restaurantApp.queryParams.price && place.restaurant.location.zipcode && place.restaurant.featured_image){
                 restaurantApp.restaurants.push(place.restaurant);
                 restaurantApp.displayInfo(place);
             }
@@ -89,8 +92,11 @@ restaurantApp.getInfo = () => {
 
 // This function over here makes stars appear in the rating
 restaurantApp.starRating = (rating) => {
+    // create arraay to hold stars
     let starArray = [];
+    // check if the input making sense
     if (!isNaN(rating) && 0 <= rating && rating <= 5 ){
+        // convert the decimal stars to half stars because 
         const halfStar = rating % 1;
         const fullStar = Math.floor(rating);
         
@@ -118,7 +124,7 @@ restaurantApp.displayInfo = function(place) {
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
                 <p class="phone">${place.restaurant.phone_numbers}</p>
-                <div class="stars">${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
+                <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
             <div class="restaurant-picture flex">
                 <img src="${place.restaurant.featured_image}" alt="">
