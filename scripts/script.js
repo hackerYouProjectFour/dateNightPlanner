@@ -199,13 +199,17 @@ movieApp.storeData = function () {
             for (i = 0; i < item.showtimes.length; i++) {
                 showTimes.push(item.showtimes[i].dateTime);
             };
-            movieApp.movieObj[theatreName][movieName].push(showTimes);
+            let apendedTimes = showTimes.map(item => item.slice(11));
+            let spacedTimes = apendedTimes.map(item => item = ` ` + item);
+            movieApp.movieObj[theatreName][movieName].push(spacedTimes);
+            
         });
         movieApp.addTheatre();
     });
 };
 
 movieApp.addTheatre = function() {
+
     for (let theatre in movieApp.movieObj) {
         $('.movie-area').append(`
             <div class='theatre-card ${theatre.replace(/[^a-zA-Z0-9]/g, "")} flex column'>
@@ -218,7 +222,7 @@ movieApp.addTheatre = function() {
                 <h4>${movie}</h4>
                 </div>
             `);
-            movieApp.movieObj[theatre][movie].forEach(function(){
+            movieApp.movieObj[theatre][movie].forEach(function(item){
                 $(`.${movie.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
                         <div class="showtimes column flex">
                         <p>${movieApp.movieObj[theatre][movie]}</p>
