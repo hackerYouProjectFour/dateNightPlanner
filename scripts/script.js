@@ -147,8 +147,9 @@ restaurantApp.init = () => {
 const movieApp = {};
 
 movieApp.showtimeUrl = `http://data.tmsapi.com/v1.1/movies/showings`;
-movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
-movieApp.zip = `M6K 3R4`;
+// movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
+movieApp.apiKey = `gzt7vyqbw7ukmn5z5a7kt4um`;
+movieApp.zip = ``;
 movieApp.radius = 3;
 movieApp.units = `km`;
 movieApp.theatreList = {};
@@ -163,18 +164,19 @@ movieApp.pullData = function () {
         data: {
             api_key: movieApp.apiKey,
             startDate: movieApp.getTodaysDate,
-            //TO BE CHANGED
             zip: movieApp.zip,
             radius: movieApp.radius,
             units: movieApp.units
         },
-    });
+    })
 };
+
 movieApp.getTodaysDate = function () {
     const today = new Date();
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 }
+
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
@@ -199,13 +201,45 @@ movieApp.storeData = function () {
             };
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
-        console.log(movieApp.movieObj);
+        movieApp.addTheatre();
     });
+};
+
+movieApp.addTheatre = function() {
+    for (let theatre in movieApp.movieObj) {
+        $('.movie-area').append(`
+            <div class='theatre-card ${theatre.replace(/[^a-zA-Z0-9]/g, "")} flex column'>
+            <h3>${theatre}</h3>
+            </div>
+        `);
+        for (let movie in movieApp.movieObj[theatre]) {
+            $(`.${theatre.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
+                <div class='${movie.replace(/[^a-zA-Z0-9]/g, "")}'>
+                <h4>${movie}</h4>
+                </div>
+            `);
+            movieApp.movieObj[theatre][movie].forEach(function(){
+                $(`.${movie.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
+                        <div class="showtimes column flex">
+                        <p>${movieApp.movieObj[theatre][movie]}</p>
+                        </div>
+                `);
+            });
+        };
+    };
+}
+
+movieApp.displayOptions = function() {
+    $('.card-area').on('click', 'button', function(){
+        movieApp.zip = $(this).val();
+        movieApp.storeData();
+        console.log(movieApp.zip);
+    })
 };
 
 movieApp.init = function () {
     movieApp.getTodaysDate();
-    movieApp.storeData();
+    movieApp.displayOptions();
 }
 
 // Both come togethere here
@@ -216,4 +250,5 @@ app.init = function () {
 }
 $(function() {
     app.init();
+   
 });
