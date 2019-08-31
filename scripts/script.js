@@ -82,6 +82,7 @@ restaurantApp.getInfo = () => {
                 restaurantApp.restaurants.push(place.restaurant);
                 restaurantApp.displayInfo(place);
             }
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SHIT IS WRONG!
             // if (!app.restaurantApp.restaurants.length){
             //     alert('nothing found chech again');
             // }
@@ -122,17 +123,19 @@ restaurantApp.displayInfo = function(place) {
     console.log(place);
     $('.card-area').append(`
         <div class="restaurant-card flex">
-            <div class="card-content basis100">
+            <div class="card-content basis75">
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
                 <p class="phone">${place.restaurant.phone_numbers}</p>
                 <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
-            <div class="restaurant-picture flex">
-                <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
-            </div>
-            <div class="show-movie flex">
-                <button value="${place.restaurant.location.zipcode}">-></button>
+            <div class="card-right flex column basis25">
+                <div class="restaurant-picture">
+                    <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
+                </div>
+                <div class="show-movie flex">
+                    <button value="${place.restaurant.location.zipcode}">Get Show Times!</button>
+                </div>
             </div>
         </div>
     `);
@@ -144,7 +147,7 @@ restaurantApp.init = () => {
 }
 
 // ================================================================================================
-// this on here contains the movie theatre portions of the code
+// this one here contains the movie theatre portions of the code
 // ================================================================================================
 const movieApp = {};
 

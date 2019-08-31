@@ -222,6 +222,16 @@ h2 {
       flex-basis: 50%;
 }
 
+.basis75 {
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+}
+
+.basis25 {
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+}
+
 fieldset {
   border: none;
 }
@@ -261,6 +271,8 @@ fieldset {
   color: #f6f6f6;
   border: 2px solid #dc5353;
   border-radius: 10px;
+  width: 100%;
+  padding: 5px;
 }
 
 .dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus {
@@ -290,4 +302,18 @@ fieldset {
   margin: 10px;
   padding: 20px;
   background: #ff935c;
+}
+
+.dinner .form .action {
+  border: 2px solid #f6f6f6;
+  border-radius: 10px;
+  background: #dc5353;
+  padding: 5px 10px;
+  color: #f6f6f6;
+}
+
+.dinner .form .action:hover, .dinner .form .action:focus {
+  border-color: #dc5353;
+  background: #f6f6f6;
+  color: #dc5353;
 }

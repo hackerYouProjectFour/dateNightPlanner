@@ -44,6 +44,14 @@ h2{
     flex-basis: 50%;
 }
 
+.basis75{
+    flex-basis:75%;
+}
+
+.basis25{
+    flex-basis:25%;
+}
+
 fieldset{
     border:none;
 }
@@ -88,6 +96,8 @@ fieldset{
             color:$accent2;
             border:2px solid $accent1;
             border-radius: 10px;
+            width: 100%;
+            padding: 5px
         }
 
         button:hover, button:focus{
@@ -115,6 +125,19 @@ fieldset{
         padding: 20px;
         background:$secondary;  
         
+        .action{
+            border:2px solid #f6f6f6;
+            border-radius: 10px;
+            background:$accent1;
+            padding:5px 10px;
+            color: #f6f6f6;
+        }
+
+        .action:hover, .action:focus{
+            border-color: $accent1;
+            background:#f6f6f6;
+            color: $accent1;
+        }
     }
 }
 
