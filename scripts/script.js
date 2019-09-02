@@ -144,7 +144,7 @@ restaurantApp.displayInfo = function(place) {
                     <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
                 </div>
                 <div class="show-movie flex">
-                    <button value="${place.restaurant.location.zipcode}">Get Show Times!</button>
+                    <button value="${place.restaurant.location.zipcode}">Get Showtimes!</button>
                 </div>
             </div>
         </div>
