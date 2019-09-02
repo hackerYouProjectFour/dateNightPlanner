@@ -222,6 +222,13 @@ h2 {
       flex-basis: 50%;
 }
 
+@media (max-width: 600px) {
+  .basis50 {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+}
+
 fieldset {
   border: none;
 }

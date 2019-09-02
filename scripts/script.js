@@ -246,7 +246,7 @@ movieApp.displayOptions = function() {
     $('.card-area').on('click', 'button', function(){
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        movieApp.resoponsiveDisplay();
+        movieApp.responsiveDisplay();
     })
 };
 
@@ -254,10 +254,11 @@ movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
 }
-movieApp.resoponsiveDisplay = function() {
+movieApp.responsiveDisplay = function() {
     if ($(window).width() <= 600) {
-        console.log(window.width());
         $('.dinner').fadeOut();
+        $('.movies').removeClass('basis50');
+        $('.movies').fadeIn();
     }
 }
 
