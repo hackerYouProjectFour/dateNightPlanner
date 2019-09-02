@@ -144,7 +144,7 @@ restaurantApp.displayInfo = function(place) {
                     <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
                 </div>
                 <div class="show-movie flex">
-                    <button value="${place.restaurant.location.zipcode}">Get Show Times!</button>
+                    <button value="${place.restaurant.location.zipcode}">Get Showtimes!</button>
                 </div>
             </div>
         </div>
@@ -218,19 +218,21 @@ movieApp.resetForm = function() {
 movieApp.goBack = function() {
     $('.movie-area').on('click', '.go-back', function(){
         if ($(window).width() <= 800) {
-            $('.movies').fadeOut();
+            $('.movie-area').fadeOut();
             $('.dinner').delay(500).fadeIn();
         } else {
-            $('.movies').fadeOut();
+            $('.movie-area').fadeOut();
+            $('.reminder').delay(500).fadeIn();
         }
     });
 }
 movieApp.responsiveDisplay = function () {
     if ($(window).width() <= 800) {
         $('.dinner').fadeOut();
-        $('.movies').delay(500).fadeIn();
+        $('.movie-area').delay(500).fadeIn();
     } else {
-        $('.movies').delay(500).fadeIn();
+        $('.movie-area').delay(500).fadeIn();
+        $('.reminder').fadeOut();
     }
 }
 

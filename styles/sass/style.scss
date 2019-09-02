@@ -61,10 +61,8 @@ h2{
     color: $accent2;
 }
 
-.action:hover, .action:focus{
-    border-color: $accent1;
-    background:$accent2;
-    color: $accent1;
+.skip-link:focus {
+  left: 0;
 }
 
 
@@ -141,7 +139,8 @@ fieldset{
 // QUERIES STYLES
 .queries{
     min-height:100vh;
-    background: $accent2;
+    background-color: #000000;
+    background-image: linear-gradient(to bottom, #000000 0%, #414141 20%);
 }
 
 // DINNER STYLES
@@ -202,7 +201,6 @@ fieldset{
 
 
 // MOVIES STYLES
-
 .movie-area {
     display: none;
     position: sticky;

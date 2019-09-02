@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content.</a>
     <section class="hero">
         <div class="jumbotron">
             <h1>Date Night</h1>
             <a href="#cuisine"><button class="action">Plan!</button></a>
         </div>
     </section>
-    <section class="queries flex">
+    <section class="queries flex" id="main-content">
         <div class="wrapper flex row basis100">
             <section class="dinner basis50">
                 <div class="form-container">
@@ -54,6 +55,9 @@
                 </div>
             </section>
             <section class="movies flex column basis50">
+                <div class="reminder dinnerForm flex column form">
+                    <h2>Please select your restaurant to see showtimes at nearby theatres.</h2>
+                </div>
                 <div class="movie-area flex column">
                 </div>
             </section>
