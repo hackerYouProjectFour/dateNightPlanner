@@ -234,6 +234,20 @@ h2 {
   left: 0;
 }
 
+.action {
+  border: 2px solid #f2f2f2;
+  border-radius: 10px;
+  background: #dc5353;
+  padding: 5px 10px;
+  color: #f2f2f2;
+}
+
+.action:hover, .action:focus {
+  border-color: #dc5353;
+  background: #f2f2f2;
+  color: #dc5353;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;

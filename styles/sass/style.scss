@@ -53,6 +53,21 @@ h2{
   left: 0;
 }
 
+.action{
+    border:2px solid $accent2;
+    border-radius: 10px;
+    background:$accent1;
+    padding:5px 10px;
+    color: $accent2;
+}
+
+.action:hover, .action:focus{
+    border-color: $accent1;
+    background:$accent2;
+    color: $accent1;
+}
+
+
 
 // Flexbox styles
 .flex{
