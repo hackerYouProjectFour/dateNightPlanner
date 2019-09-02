@@ -201,6 +201,10 @@ html {
   margin: 0 auto;
 }
 
+body {
+  font-size: 1.8rem;
+}
+
 h1 {
   font-family: "Caveat", sans-serif;
   font-weight: 700;
@@ -209,6 +213,7 @@ h1 {
 
 h2 {
   text-align: center;
+  font-size: 2.5rem;
 }
 
 .flex {
