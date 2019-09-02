@@ -296,6 +296,7 @@ h2 {
 
 fieldset {
   border: none;
+  width: 70%;
 }
 
 .hero {
@@ -383,20 +384,19 @@ fieldset {
   background: #ff935c;
 }
 
-.form fieldset {
-  width: 70%;
-}
-
 .form select {
   width: 100%;
   text-align: center;
 }
 
-.movie-area {
-  display: none;
+.reminder, .movie-area {
   position: -webkit-sticky;
   position: sticky;
   top: 20px;
+}
+
+.movie-area {
+  display: none;
 }
 
 .movie-area p {
@@ -451,5 +451,25 @@ fieldset {
     position: absolute;
     -ms-flex-preferred-size: 0;
         flex-basis: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero .jumbotron {
+    width: 75%;
+  }
+  .restaurant-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .restaurant-card .restaurant-picture {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+  .action, fieldset {
+    width: 100%;
   }
 }

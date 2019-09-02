@@ -114,11 +114,11 @@ restaurantApp.starRating = (rating) => {
             return "Not rated yet."
         }
         for (let i = 0; i < fullStar; i++){
-            starArray.push('<i class="fas fa-star star"></i>');
+            starArray.push('<i class="fas fa-star star" aria-hidden="true"></i><span class="sr-only">One star</span>');
         }
 
         if (halfStar) {
-            starArray.push('<i class="fas fa-star-half star"></i>');
+            starArray.push('<i class="fas fa-star-half star aria-hidden="true""></i><span class="sr-only">Half star</span>');
         }
         
         starString = "";
