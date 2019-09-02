@@ -225,11 +225,6 @@ movieApp.storeData = function () {
             };
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
-<<<<<<< HEAD
-        movieApp.addTheatre();
-=======
-        // console.log(movieApp.movieObj);
->>>>>>> styles
     });
 };
 
