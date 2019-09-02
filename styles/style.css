@@ -241,13 +241,6 @@ h2 {
       flex-basis: 50%;
 }
 
-@media (max-width: 600px) {
-  .basis50 {
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-  }
-}
-
 .basis75 {
   -ms-flex-preferred-size: 75%;
       flex-basis: 75%;
@@ -256,6 +249,11 @@ h2 {
 .basis25 {
   -ms-flex-preferred-size: 25%;
       flex-basis: 25%;
+}
+
+.basis0 {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
 }
 
 fieldset {
