@@ -5,67 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dinner and Movie</title>
+    <link href="https://fonts.googleapis.com/css?family=Caveat:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <section class="hero">
         <div class="jumbotron">
-            <h1>Let Us Help You <br/> Plan Your Night Out</h1>
+            <h1>Date Night</h1>
             <a href="#cuisine"><button>Start</button></a>
         </div>
     </section>
     <section class="queries flex">
-        <section class="dinner basis50">
-            <div class="form-container">
-                <h2>Pick Your Dining preferences:</h2>
-                <form action="" class="dinnerForm flex column form">
-                    <fieldset class="form-cuisine">
-                        <label for="cuisine">Pick the cuisine:</label>
-                        <select name="cuisine" id="cuisine">
-                           <!-- Dynamic menue goes in here -->
-                        </select>
-                    </fieldset>
-                    
-                    <fieldset class="form-price">
-                        <label for="price">Pick the price range:</label>
-                        <select name="price" id="price">
-                            <option value="1">$</option>
-                            <option value="2">$$</option>
-                            <option value="3">$$$</option>
-                            <option value="4">$$$$</option>
-                        </select>
-                    </fieldset>
-                    <input type="submit" value="Search">
-                </form>
-            </div>
-            <div class="card-area">
-                <div class="restaurant-card flex">
-                    <div class="card-content basis100">
-                        <h3>restaurant name goes here</h3>
-                        <p class="address"> 69 Dark St. <br/> Shanty Town<br/> A1B 2C3</p>
-                        <p class="phone">123-042-6969</p>
-                        <div class="stars">Rating: *****</div>
-                    </div>
-                    <div class="restaurant-picture">
-                        <img src="" alt="">
-                    </div>
-                    <div class="show-movie flex">
-                        <button></button>
-                    </div>
+        <div class="wrapper flex row basis100">
+            <section class="dinner basis50">
+                <div class="form-container">
+                    <form action="" class="dinnerForm flex column form">
+                        <h2>Pick Your Dining preferences:</h2>
+                        <fieldset class="form-cuisine">
+                            <label for="cuisine">Pick the cuisine:</label>
+                            <select name="cuisine" id="cuisine">
+                               <!-- Dynamic menue goes in here -->
+                            </select>
+                        </fieldset>
+                        
+                        <fieldset class="form-price">
+                            <label for="price">Pick the price range:</label>
+                            <select name="price" id="price">
+                                <option value="1">$</option>
+                                <option value="2">$$</option>
+                                <option value="3">$$$</option>
+                                <option value="4">$$$$</option>
+                            </select>
+                        </fieldset>
+                        <input class="action" type="submit" value="Search">
+                    </form>
                 </div>
-            </div>
-        </section>
-        <section class="movies basis50">
-            <h2>Movies GO here</h2>
-            <div class="movie-area">
-                <div class="theatre-card flex column">
-                    <h3>theatre name goes here</h3>
-                    <div class="movie-card flex column">
-                        <h4>movie name</h4>
-                        <div class="showtime-card flex column">
-                                <p>showtime one</p>
-                        </div>
-                    </div>
+                <div class="card-area">
+                    <!-- Found restaurants go here -->
                 </div>
             </div>
         </section>

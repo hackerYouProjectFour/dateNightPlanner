@@ -179,13 +179,32 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden;
 }
 
+@-webkit-keyframes fadein {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  100% {
+    opacity: 1;
+  }
+}
+
 html {
   scroll-behavior: smooth;
+  font-size: 62.5%;
 }
 
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+h1 {
+  font-family: "Caveat", sans-serif;
+  font-weight: 700;
+  font-size: 6rem;
 }
 
 h2 {
@@ -222,19 +241,35 @@ h2 {
       flex-basis: 50%;
 }
 
+.basis75 {
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+}
+
+.basis25 {
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+}
+
 fieldset {
   border: none;
 }
 
 .hero {
   height: 100vh;
-  background-image: url(../assets/hero.jpg);
+  background-image: url(../assets/hero-min.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 30vh;
+  padding-top: 20vh;
+  opacity: 0;
+  -webkit-animation: 1s fadein 0.5s forwards;
+          animation: 1s fadein 0.5s forwards;
 }
 
 .hero .jumbotron {
+  opacity: 0;
+  -webkit-animation: 1s fadein 1s forwards;
+          animation: 1s fadein 1s forwards;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 30px;
   margin: 0 auto;
@@ -248,7 +283,7 @@ fieldset {
   background: #f6f6f6;
 }
 
-.dinner .restaurant-card {
+.dinner .restaurant-card, .dinner .not-found {
   margin: 10px;
   padding: 30px;
   border-radius: 10px;
@@ -256,19 +291,21 @@ fieldset {
   border: 2px solid #dc5353;
 }
 
-.dinner .restaurant-card button {
+.dinner .restaurant-card button, .dinner .not-found button {
   background: #ff935c;
   color: #f6f6f6;
   border: 2px solid #dc5353;
   border-radius: 10px;
+  width: 100%;
+  padding: 5px;
 }
 
-.dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus {
+.dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus, .dinner .not-found button:hover, .dinner .not-found button:focus {
   color: #dc5353;
   background: #f6f6f6;
 }
 
-.dinner .restaurant-card .star {
+.dinner .restaurant-card .star, .dinner .not-found .star {
   color: #dc5353;
 }
 
@@ -290,4 +327,18 @@ fieldset {
   margin: 10px;
   padding: 20px;
   background: #ff935c;
+}
+
+.dinner .form .action {
+  border: 2px solid #f6f6f6;
+  border-radius: 10px;
+  background: #dc5353;
+  padding: 5px 10px;
+  color: #f6f6f6;
+}
+
+.dinner .form .action:hover, .dinner .form .action:focus {
+  border-color: #dc5353;
+  background: #f6f6f6;
+  color: #dc5353;
 }
