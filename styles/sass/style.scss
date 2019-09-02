@@ -5,13 +5,8 @@
 $primary : #f9e090;
 $secondary: #ff935c;
 $accent1 : #dc5353;
-$accent2: #f6f6f6;
-
+$accent2: #f2f2f2;
 // GENERAL STYLES
-
-*{
-    // border: 2px solid tomato;
-}
 
 html {
     scroll-behavior: smooth;
@@ -40,6 +35,19 @@ h2{
     font-size: 2.5rem;
 }
 
+.action{
+    border:2px solid $accent2;
+    border-radius: 10px;
+    background:$accent1;
+    padding:5px 10px;
+    color: $accent2;
+}
+
+.action:hover, .action:focus{
+    border-color: $accent1;
+    background:$accent2;
+    color: $accent1;
+}
 
 
 // Flexbox styles
@@ -86,9 +94,11 @@ fieldset{
     background-image: url(../assets/hero-min.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     padding-top:20vh;
     opacity:0;
     animation:1s fadein 0.5s forwards;
+
     .jumbotron{
         opacity: 0;
         animation:1s fadein 1s forwards;
@@ -100,12 +110,18 @@ fieldset{
         text-align: center;
     }
 
+    button{
+        padding: 20px 50px;
+        border-radius: 30px;
+        text-transform: uppercase;
+    }
+
 }
 
 // QUERIES STYLES
 .queries{
     min-height:100vh;
-    background: #f6f6f6;
+    background: $accent2;
 }
 
 // DINNER STYLES
@@ -150,21 +166,7 @@ fieldset{
         border-radius: 10px;
         margin:10px;
         padding: 20px;
-        background:$secondary;  
-        
-        .action{
-            border:2px solid #f6f6f6;
-            border-radius: 10px;
-            background:$accent1;
-            padding:5px 10px;
-            color: #f6f6f6;
-        }
-
-        .action:hover, .action:focus{
-            border-color: $accent1;
-            background:#f6f6f6;
-            color: $accent1;
-        }
+        background:$secondary; 
     }
 }
 

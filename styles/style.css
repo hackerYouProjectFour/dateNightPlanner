@@ -216,6 +216,20 @@ h2 {
   font-size: 2.5rem;
 }
 
+.action {
+  border: 2px solid #f2f2f2;
+  border-radius: 10px;
+  background: #dc5353;
+  padding: 5px 10px;
+  color: #f2f2f2;
+}
+
+.action:hover, .action:focus {
+  border-color: #dc5353;
+  background: #f2f2f2;
+  color: #dc5353;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -265,6 +279,7 @@ fieldset {
   background-image: url(../assets/hero-min.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   padding-top: 20vh;
   opacity: 0;
   -webkit-animation: 1s fadein 0.5s forwards;
@@ -283,9 +298,15 @@ fieldset {
   text-align: center;
 }
 
+.hero button {
+  padding: 20px 50px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
 .queries {
   min-height: 100vh;
-  background: #f6f6f6;
+  background: #f2f2f2;
 }
 
 .dinner .restaurant-card, .dinner .not-found {
@@ -298,7 +319,7 @@ fieldset {
 
 .dinner .restaurant-card button, .dinner .not-found button {
   background: #ff935c;
-  color: #f6f6f6;
+  color: #f2f2f2;
   border: 2px solid #dc5353;
   border-radius: 10px;
   width: 100%;
@@ -307,7 +328,7 @@ fieldset {
 
 .dinner .restaurant-card button:hover, .dinner .restaurant-card button:focus, .dinner .not-found button:hover, .dinner .not-found button:focus {
   color: #dc5353;
-  background: #f6f6f6;
+  background: #f2f2f2;
 }
 
 .dinner .restaurant-card .star, .dinner .not-found .star {
@@ -332,20 +353,6 @@ fieldset {
   margin: 10px;
   padding: 20px;
   background: #ff935c;
-}
-
-.dinner .form .action {
-  border: 2px solid #f6f6f6;
-  border-radius: 10px;
-  background: #dc5353;
-  padding: 5px 10px;
-  color: #f6f6f6;
-}
-
-.dinner .form .action:hover, .dinner .form .action:focus {
-  border-color: #dc5353;
-  background: #f6f6f6;
-  color: #dc5353;
 }
 
 .movie-area p {
