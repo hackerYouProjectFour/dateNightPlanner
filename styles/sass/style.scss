@@ -63,6 +63,12 @@ h2{
     flex-basis: 50%;
 }
 
+@media (max-width: 600px) {
+    .basis50 {
+        flex-basis: 100%;
+    }
+}
+
 .basis75{
     flex-basis:75%;
 }
@@ -70,10 +76,6 @@ h2{
 .basis25{
     flex-basis:25%;
 }
-
-// .basis0 {
-//     flex-basis: 0;
-// }
 
 fieldset{
     border:none;
@@ -169,6 +171,9 @@ fieldset{
 }
 
 // MOVIES STYLES
+.movies {
+    display: none;
+}
 .movie-area {
     p {
         margin: 0 0 25px 0;
@@ -192,4 +197,20 @@ fieldset{
         background: $primary;
         border: 2px solid $accent1;
     }
+    .action{
+            border:2px solid #f6f6f6;
+            border-radius: 10px;
+            background:$accent1;
+            padding:5px 10px;
+            color: #f6f6f6;
+        }
+
+    .action:hover, .action:focus{
+            border-color: $accent1;
+            background:#f6f6f6;
+            color: $accent1;
+    }
+}
+.reset {
+    justify-content: center;
 }

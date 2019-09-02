@@ -91,7 +91,6 @@ restaurantApp.getInfo = () => {
         });
     }).then(()=>{
         if (restaurantApp.restaurants.length === 0){
-            console.log('chcking for errors');
             restaurantApp.errorsArray.push(1);
             let checkSum = restaurantApp.errorsArray.reduce((accumulator, currentValue) =>accumulator + currentValue, 0);
             if (checkSum === 5){
@@ -172,8 +171,8 @@ restaurantApp.init = () => {
 const movieApp = {};
 
 movieApp.showtimeUrl = `http://data.tmsapi.com/v1.1/movies/showings`;
-// movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
-movieApp.apiKey = `gzt7vyqbw7ukmn5z5a7kt4um`;
+movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
+// movieApp.apiKey = `gzt7vyqbw7ukmn5z5a7kt4um`;
 movieApp.zip = ``;
 movieApp.radius = 3;
 movieApp.units = `km`;
@@ -202,6 +201,8 @@ movieApp.displayError = function() {
             <div class='theatre-card flex column'>
             <h3>I'm sorry, we were unable to find any theatres or showtimes close to the restaurant you've selected.</h3>
             </div>
+            <div class='reset flex'><button class="go-back action">Go Back!</button><button class='reset-button action'>Reset</button></div>
+            
         `);
 };
 movieApp.getTodaysDate = function () {
@@ -209,6 +210,29 @@ movieApp.getTodaysDate = function () {
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 };
+movieApp.resetForm = function() {
+    $('.movie-area').on('click', '.reset-button', function(){
+        location.reload(true);
+    });
+}
+movieApp.goBack = function() {
+    $('.movie-area').on('click', '.go-back', function(){
+        if ($(window).width() <= 600) {
+            $('.movies').fadeOut();
+            $('.dinner').delay(500).fadeIn();
+        } else {
+            $('.movies').fadeOut();
+        }
+    });
+}
+movieApp.responsiveDisplay = function () {
+    if ($(window).width() <= 600) {
+        $('.dinner').fadeOut();
+        $('.movies').delay(500).fadeIn();
+    } else {
+        $('.movies').delay(500).fadeIn();
+    }
+}
 
 movieApp.addTheatre = function () {
     for (let theatre in movieApp.movieObj) {
@@ -232,13 +256,15 @@ movieApp.addTheatre = function () {
             });
         };
     };
+    $('.movie-area').append(`
+        <div class='reset flex'><button class="go-back action">Go Back!</button><button class='reset-button action'>Reset</button></div>
+    `)
 };
 
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
         const fullData = results;
-        console.log(fullData);
         results.forEach(function (result) {
             duplicateTheatres.push(result.showtimes[0].theatre.name);
         })
@@ -267,22 +293,20 @@ movieApp.storeData = function () {
 
 movieApp.displayOptions = function() {
     $('.card-area').on('click', 'button', function(){
+        $('.movie-area').html('')
         movieApp.zip = $(this).val();
         movieApp.storeData();
+        movieApp.responsiveDisplay();
     })
 };
 
 movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
+    movieApp.resetForm();
+    movieApp.goBack();
 }
-// movieApp.responsiveDisplay = function() {
-//     if ($(window).width() <= 600) {
-//         $('.dinner').fadeOut();
-//         $('.movies').removeClass('basis50');
-//         $('.movies').fadeIn();
-//     }
-// }
+
 
 // Both come togethere here
 
@@ -292,5 +316,4 @@ app.init = function () {
 }
 $(function() {
     app.init();
-   
 });
