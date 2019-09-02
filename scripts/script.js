@@ -256,6 +256,7 @@ movieApp.init = function () {
 }
 movieApp.resoponsiveDisplay = function() {
     if ($(window).width() <= 600) {
+        console.log(window.width());
         $('.dinner').fadeOut();
     }
 }
