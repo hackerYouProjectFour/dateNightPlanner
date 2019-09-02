@@ -48,8 +48,8 @@ restaurantApp.getRestorantInfo = () => {
     // Creat object to hold user picked info
     restaurantApp.userPicks = {};
     $('.dinnerForm').on('submit', (e) =>{
-        // Empty array from any previous results
-        restaurantApp.restaurants = [];
+        // RESET EVERYTHING!!!!!
+        restaurantApp.resetAll();
         e.preventDefault();
         $('.card-area').html('');
         restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
@@ -76,7 +76,10 @@ restaurantApp.getInfo = () => {
             cuisines : restaurantApp.queryParams.cuisine,
             start : restaurantApp.queryParams.offset
         },
-        dataType: 'json'
+        dataType: 'json',
+        error: function() {
+            console.log('SOMETHIGN WENT WRONG!!!!');
+        }
     }).then((res) => {
         // save results to the array.
         res.restaurants.forEach(function(place) {
@@ -87,10 +90,11 @@ restaurantApp.getInfo = () => {
         });
     }).then(()=>{
         if (restaurantApp.restaurants.length === 0){
+            console.log('chcking for errors');
             restaurantApp.errorsArray.push(1);
             let checkSum = restaurantApp.errorsArray.reduce((accumulator, currentValue) =>accumulator + currentValue, 0);
             if (checkSum === 5){
-                console.log('nothing found');
+                $('.dinner .card-area').append('<div class="not-found"><p>Sorry, we were not able to find and restaurants that match your requirements. Please change search parameters and try again.</p></div>')
                 
             }
         }
@@ -147,10 +151,12 @@ restaurantApp.displayInfo = function(place) {
     `);
 }
 
-restaurantApp.ifEmpty = () => {
-    if (restaurantApp.restaurants.length === 0){
-        alert ('nothing found');
-    }
+// This function resets all the variables to the initial state.
+restaurantApp.resetAll = () => {
+    restaurantApp.restaurants = [];
+    restaurantApp.checkSum = [];
+    restaurantApp.errorsArray = [];
+    restaurantApp.offset = 0;
 }
 
 // Start reastaurant app

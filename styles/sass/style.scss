@@ -1,4 +1,5 @@
 @import "setup";
+@import "animations";
 
 // VARIABLES
 $primary : #f9e090;
@@ -7,17 +8,25 @@ $accent1 : #dc5353;
 $accent2: #f6f6f6;
 
 // GENERAL STYLES
+
 *{
     // border: 2px solid tomato;
 }
 
 html {
     scroll-behavior: smooth;
+    font-size: 62.5%;
 }
 
 .wrapper{
     max-width: 1200px;
     margin: 0 auto;
+}
+
+h1{
+    font-family: "Caveat", sans-serif;
+    font-weight: 700;
+    font-size: 6rem;
 }
 
 h2{
@@ -60,11 +69,15 @@ fieldset{
 
 .hero{
     height: 100vh;
-    background-image: url(../assets/hero.jpg);
+    background-image: url(../assets/hero-min.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top:30vh;
+    padding-top:20vh;
+    opacity:0;
+    animation:1s fadein 0.5s forwards;
     .jumbotron{
+        opacity: 0;
+        animation:1s fadein 1s forwards;
         background: rgba(255, 255, 255, 0.4);
         border-radius: 30px;
         margin: 0 auto;
@@ -84,7 +97,7 @@ fieldset{
 // DINNER STYLES
 .dinner{
 
-    .restaurant-card{
+    .restaurant-card, .not-found{
         margin:10px;
         padding: 30px;
         border-radius: 10px;
