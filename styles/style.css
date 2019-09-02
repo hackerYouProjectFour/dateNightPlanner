@@ -370,10 +370,6 @@ fieldset {
   color: #dc5353;
 }
 
-.movies {
-  position: absolute;
-}
-
 .movie-area {
   display: none;
   position: -webkit-sticky;
@@ -423,6 +419,9 @@ fieldset {
   .basis50 {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
+  }
+  .movies {
+    position: absolute;
   }
   .reminder {
     display: none;

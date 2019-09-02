@@ -184,9 +184,7 @@ fieldset{
 }
 
 // MOVIES STYLES
-.movies {
-    position: absolute;
-}
+
 .movie-area {
     display: none;
     position: sticky;
@@ -231,6 +229,10 @@ fieldset{
 @media (max-width: 800px) {
     .basis50 {
         flex-basis: 100%;
+    }
+
+    .movies {
+        position: absolute;
     }
 
     .reminder {
