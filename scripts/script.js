@@ -238,6 +238,7 @@ movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
         const fullData = results;
+        console.log(fullData);
         results.forEach(function (result) {
             duplicateTheatres.push(result.showtimes[0].theatre.name);
         })
@@ -259,8 +260,8 @@ movieApp.storeData = function () {
             let apendedTimes = showTimes.map(item => item.slice(11));
             let spacedTimes = apendedTimes.map(item => item = ` ` + item);
             movieApp.movieObj[theatreName][movieName].push(spacedTimes);
-
         });
+        movieApp.addTheatre();
     });
 };
 
@@ -268,7 +269,6 @@ movieApp.displayOptions = function() {
     $('.card-area').on('click', 'button', function(){
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        movieApp.responsiveDisplay();
     })
 };
 
@@ -276,13 +276,13 @@ movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
 }
-movieApp.responsiveDisplay = function() {
-    if ($(window).width() <= 600) {
-        $('.dinner').fadeOut();
-        $('.movies').removeClass('basis50');
-        $('.movies').fadeIn();
-    }
-}
+// movieApp.responsiveDisplay = function() {
+//     if ($(window).width() <= 600) {
+//         $('.dinner').fadeOut();
+//         $('.movies').removeClass('basis50');
+//         $('.movies').fadeIn();
+//     }
+// }
 
 // Both come togethere here
 
