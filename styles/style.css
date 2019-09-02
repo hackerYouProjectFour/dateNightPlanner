@@ -261,13 +261,6 @@ h2 {
       flex-basis: 50%;
 }
 
-@media (max-width: 800px) {
-  .basis50 {
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-  }
-}
-
 .basis75 {
   -ms-flex-preferred-size: 75%;
       flex-basis: 75%;
@@ -377,6 +370,10 @@ fieldset {
   color: #dc5353;
 }
 
+.movies {
+  position: absolute;
+}
+
 .movie-area {
   display: none;
   position: -webkit-sticky;
@@ -419,5 +416,18 @@ fieldset {
 @media (max-width: 800px) {
   .movie-area {
     position: initial;
+  }
+}
+
+@media (max-width: 800px) {
+  .basis50 {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+  .reminder {
+    display: none;
+    position: absolute;
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
   }
 }

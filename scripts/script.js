@@ -219,7 +219,6 @@ movieApp.goBack = function() {
     $('.movie-area').on('click', '.go-back', function(){
         if ($(window).width() <= 800) {
             $('.movie-area').fadeOut();
-            $('.reminder').delay(500).fadeIn();
             $('.dinner').delay(500).fadeIn();
         } else {
             $('.movie-area').fadeOut();
@@ -230,7 +229,6 @@ movieApp.goBack = function() {
 movieApp.responsiveDisplay = function () {
     if ($(window).width() <= 800) {
         $('.dinner').fadeOut();
-        $('.reminder').fadeOut();
         $('.movie-area').delay(500).fadeIn();
     } else {
         $('.movie-area').delay(500).fadeIn();
