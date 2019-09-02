@@ -38,6 +38,21 @@ h2{
     font-size: 2.5rem;
 }
 
+.skip-link {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: $accent1;
+  color:white;
+  padding: 10px 15px;
+  border: 2px solid white;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
 .action{
     border:2px solid $accent2;
     border-radius: 10px;
@@ -76,12 +91,6 @@ h2{
 
 .basis50{
     flex-basis: 50%;
-}
-
-@media (max-width: 800px) {
-    .basis50 {
-        flex-basis: 100%;
-    }
 }
 
 .basis75{
@@ -171,30 +180,31 @@ fieldset{
             margin: 5px;
         }
     }
-    .form{
-        align-items: center;
-        border: 2px solid $accent1;
-        border-radius: 10px;
-        margin:10px;
-        padding: 20px;
-        background:$secondary; 
+}
 
-        fieldset{
-            width:70%;
-        }
+.form{
+    align-items: center;
+    border: 2px solid $accent1;
+    border-radius: 10px;
+    margin:10px;
+    padding: 20px;
+    background:$secondary; 
 
-        select{
-            width:100%;
-            text-align: center;
-        }
+    fieldset{
+        width:70%;
+    }
+
+    select{
+        width:100%;
+        text-align: center;
     }
 }
 
+
 // MOVIES STYLES
-.movies {
-    display: none;
-}
+
 .movie-area {
+    display: none;
     position: sticky;
     top: 20px;
     p {
@@ -219,19 +229,10 @@ fieldset{
         background: $primary;
         border: 2px solid $accent1;
     }
-    .action{
-            border:2px solid #f6f6f6;
-            border-radius: 10px;
-            background:$accent1;
-            padding:5px 10px;
-            color: #f6f6f6;
-        }
+}
 
-    .action:hover, .action:focus{
-            border-color: $accent1;
-            background:#f6f6f6;
-            color: $accent1;
-    }
+.reminder {
+    padding: 67px 50px;
 }
 .reset {
     justify-content: center;
@@ -242,5 +243,18 @@ fieldset{
 @media (max-width: 800px) {
     .movie-area {
         position: initial;
+    }
+    .basis50 {
+        flex-basis: 100%;
+    }
+
+    .movies {
+        position: absolute;
+    }
+
+    .reminder {
+        display: none;
+        position: absolute;
+        flex-basis: 0;
     }
 }
