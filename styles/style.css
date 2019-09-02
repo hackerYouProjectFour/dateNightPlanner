@@ -241,6 +241,13 @@ h2 {
       flex-basis: 50%;
 }
 
+@media (max-width: 600px) {
+  .basis50 {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+}
+
 .basis75 {
   -ms-flex-preferred-size: 75%;
       flex-basis: 75%;
@@ -343,6 +350,10 @@ fieldset {
   color: #dc5353;
 }
 
+.movies {
+  display: none;
+}
+
 .movie-area p {
   margin: 0 0 25px 0;
 }
@@ -363,4 +374,24 @@ fieldset {
   border-radius: 5px;
   background: #f9e090;
   border: 2px solid #dc5353;
+}
+
+.movie-area .action {
+  border: 2px solid #f6f6f6;
+  border-radius: 10px;
+  background: #dc5353;
+  padding: 5px 10px;
+  color: #f6f6f6;
+}
+
+.movie-area .action:hover, .movie-area .action:focus {
+  border-color: #dc5353;
+  background: #f6f6f6;
+  color: #dc5353;
+}
+
+.reset {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
