@@ -2,6 +2,7 @@
 // 9ab73e55b485303a844c8e0f5d16d2c9
 // 97641d101a3b203687e053667fcd3898
 
+// comment
 
 // Create app namespace to hold all methods
 const app = {};
@@ -18,6 +19,8 @@ restaurantApp.queryParams.count = 20;
 restaurantApp.queryParams.offset = 0;
 restaurantApp.restaurants = [];
 restaurantApp.cuisines = [];
+
+restaurantApp.errorsArray = [];
 
 // Make AJAX call to zomato to get the list of restaurants ad put them on the page
 
@@ -46,16 +49,17 @@ restaurantApp.getRestorantInfo = () => {
     // Creat object to hold user picked info
     restaurantApp.userPicks = {};
     $('.dinnerForm').on('submit', (e) =>{
-        // Empty array from any previous results
-        restaurantApp.restaurants = [];
+        // RESET EVERYTHING!!!!!
+        restaurantApp.resetAll();
         e.preventDefault();
         $('.card-area').html('');
         restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
         restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
-        for(let i = 0; i<=100; i = i+20){
+        // Must make 5 api calls for max amount of restaurants because the api returns only 20 at a time
+        for(let i = 0; i < 100; i = i+20){
             restaurantApp.queryParams.offset = i;
             restaurantApp.getInfo();
-        }    
+        }
     });
 }
 
@@ -73,21 +77,29 @@ restaurantApp.getInfo = () => {
             cuisines : restaurantApp.queryParams.cuisine,
             start : restaurantApp.queryParams.offset
         },
-        dataType: 'json'
+        dataType: 'json',
+        error: function() {
+            console.log('SOMETHIGN WENT WRONG!!!!');
+        }
     }).then((res) => {
-        // save resuls from the array.
-        console.log(res);
+        // save results to the array.
         res.restaurants.forEach(function(place) {
             if (place.restaurant.price_range === restaurantApp.queryParams.price && place.restaurant.location.zipcode && place.restaurant.featured_image){
                 restaurantApp.restaurants.push(place.restaurant);
                 restaurantApp.displayInfo(place);
             }
-            // if (!app.restaurantApp.restaurants.length){
-            //     alert('nothing found chech again');
-            // }
         });
-        
-    })
+    }).then(()=>{
+        if (restaurantApp.restaurants.length === 0){
+            console.log('chcking for errors');
+            restaurantApp.errorsArray.push(1);
+            let checkSum = restaurantApp.errorsArray.reduce((accumulator, currentValue) =>accumulator + currentValue, 0);
+            if (checkSum === 5){
+                $('.dinner .card-area').append('<div class="not-found"><p>Sorry, we were not able to find and restaurants that match your requirements. Please change search parameters and try again.</p></div>')
+                
+            }
+        }
+    });
 }
 
 // This function over here makes stars appear in the rating
@@ -96,7 +108,7 @@ restaurantApp.starRating = (rating) => {
     let starArray = [];
     // check if the input making sense
     if (!isNaN(rating) && 0 <= rating && rating <= 5 ){
-        // convert the decimal stars to half stars because 
+        // convert the decimal stars to half stars because users dont responr well to quater stars i guess
         const halfStar = rating % 1;
         const fullStar = Math.floor(rating);
         if(!rating){
@@ -119,24 +131,35 @@ restaurantApp.starRating = (rating) => {
 }
 // Display restaurant  data on the page
 restaurantApp.displayInfo = function(place) {
-    console.log(place);
+    // console.log(place);
     $('.card-area').append(`
         <div class="restaurant-card flex">
-            <div class="card-content basis100">
+            <div class="card-content basis75">
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
                 <p class="phone">${place.restaurant.phone_numbers}</p>
                 <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
-            <div class="restaurant-picture flex">
-                <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
-            </div>
-            <div class="show-movie flex">
-                <button value="${place.restaurant.location.zipcode}">-></button>
+            <div class="card-right flex column basis25">
+                <div class="restaurant-picture">
+                    <img src="${place.restaurant.featured_image}" alt="featured image from a restaurant">
+                </div>
+                <div class="show-movie flex">
+                    <button value="${place.restaurant.location.zipcode}">Get Show Times!</button>
+                </div>
             </div>
         </div>
     `);
 }
+
+// This function resets all the variables to the initial state.
+restaurantApp.resetAll = () => {
+    restaurantApp.restaurants = [];
+    restaurantApp.checkSum = [];
+    restaurantApp.errorsArray = [];
+    restaurantApp.offset = 0;
+}
+
 // Start reastaurant app
 restaurantApp.init = () => {
     restaurantApp.getRestaurantsList();
@@ -144,7 +167,7 @@ restaurantApp.init = () => {
 }
 
 // ================================================================================================
-// this on here contains the movie theatre portions of the code
+// this one here contains the movie theatre portions of the code
 // ================================================================================================
 const movieApp = {};
 
@@ -238,7 +261,6 @@ movieApp.storeData = function () {
             movieApp.movieObj[theatreName][movieName].push(spacedTimes);
 
         });
-        movieApp.addTheatre();
     });
 };
 
