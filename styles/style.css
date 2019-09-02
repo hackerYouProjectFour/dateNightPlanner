@@ -245,7 +245,8 @@ fieldset {
 
 .queries {
   min-height: 100vh;
-  background: #f6f6f6;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(black), color-stop(20%, #434343));
+  background-image: linear-gradient(to bottom, black 0%, #434343 20%);
 }
 
 .dinner .restaurant-card {

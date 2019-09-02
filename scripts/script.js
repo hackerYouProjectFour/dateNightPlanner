@@ -170,48 +170,24 @@ movieApp.pullData = function () {
             radius: movieApp.radius,
             units: movieApp.units
         },
-    })
+    }).fail((error) => {
+        movieApp.displayError();
+    });
 };
-
+movieApp.displayError = function() {
+    $('.movie-area').append(`
+            <div class='theatre-card flex column'>
+            <h3>I'm sorry, we were unable to find any theatres or showtimes close to the restaurant you've selected.</h3>
+            </div>
+        `);
+};
 movieApp.getTodaysDate = function () {
     const today = new Date();
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
-}
-
-movieApp.storeData = function () {
-    movieApp.pullData().then(function (results) {
-        const duplicateTheatres = [];
-        const fullData = results;
-        results.forEach(function(result){
-            duplicateTheatres.push(result.showtimes[0].theatre.name); 
-        })
-        const uniqueSet = new Set(duplicateTheatres);
-        movieApp.theatreList = [...uniqueSet];
-        movieApp.theatreList.forEach(function(item){
-            movieApp.movieObj[item] = {};
-        })
-        fullData.forEach(function (item) {
-            let movieName = item.title;
-            let theatreName = item.showtimes[0].theatre.name;
-            let showTimes = [];
-            if (movieApp.theatreList.includes(theatreName)) {
-                movieApp.movieObj[theatreName][movieName] = [];  
-            }
-            for (i = 0; i < item.showtimes.length; i++) {
-                showTimes.push(item.showtimes[i].dateTime);
-            };
-            let apendedTimes = showTimes.map(item => item.slice(11));
-            let spacedTimes = apendedTimes.map(item => item = ` ` + item);
-            movieApp.movieObj[theatreName][movieName].push(spacedTimes);
-            
-        });
-        movieApp.addTheatre();
-    });
 };
 
-movieApp.addTheatre = function() {
-
+movieApp.addTheatre = function () {
     for (let theatre in movieApp.movieObj) {
         $('.movie-area').append(`
             <div class='theatre-card ${theatre.replace(/[^a-zA-Z0-9]/g, "")} flex column'>
@@ -224,7 +200,7 @@ movieApp.addTheatre = function() {
                 <h4>${movie}</h4>
                 </div>
             `);
-            movieApp.movieObj[theatre][movie].forEach(function(item){
+            movieApp.movieObj[theatre][movie].forEach(function (item) {
                 $(`.${movie.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
                         <div class="showtimes column flex">
                         <p>${movieApp.movieObj[theatre][movie]}</p>
@@ -233,19 +209,55 @@ movieApp.addTheatre = function() {
             });
         };
     };
-}
+};
+
+movieApp.storeData = function () {
+    movieApp.pullData().then(function (results) {
+        const duplicateTheatres = [];
+        const fullData = results;
+        results.forEach(function (result) {
+            duplicateTheatres.push(result.showtimes[0].theatre.name);
+        })
+        const uniqueSet = new Set(duplicateTheatres);
+        movieApp.theatreList = [...uniqueSet];
+        movieApp.theatreList.forEach(function (item) {
+            movieApp.movieObj[item] = {};
+        })
+        fullData.forEach(function (item) {
+            let movieName = item.title;
+            let theatreName = item.showtimes[0].theatre.name;
+            let showTimes = [];
+            if (movieApp.theatreList.includes(theatreName)) {
+                movieApp.movieObj[theatreName][movieName] = [];
+            }
+            for (i = 0; i < item.showtimes.length; i++) {
+                showTimes.push(item.showtimes[i].dateTime);
+            };
+            let apendedTimes = showTimes.map(item => item.slice(11));
+            let spacedTimes = apendedTimes.map(item => item = ` ` + item);
+            movieApp.movieObj[theatreName][movieName].push(spacedTimes);
+
+        });
+        movieApp.addTheatre();
+    });
+};
 
 movieApp.displayOptions = function() {
     $('.card-area').on('click', 'button', function(){
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        console.log(movieApp.zip);
+        movieApp.resoponsiveDisplay();
     })
 };
 
 movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
+}
+movieApp.resoponsiveDisplay = function() {
+    if ($(window).width() <= 600) {
+        $('.dinner').fadeOut();
+    }
 }
 
 // Both come togethere here
