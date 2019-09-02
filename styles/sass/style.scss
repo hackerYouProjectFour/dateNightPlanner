@@ -24,6 +24,10 @@ body{
 
 // TYPOGRAPHY
 
+h1, h2, h3{
+    text-align: center;
+}
+
 h1{
     font-family: "Caveat", sans-serif;
     font-weight: 700;
@@ -31,7 +35,6 @@ h1{
 }
 
 h2{
-    text-align: center;
     font-size: 2.5rem;
 }
 
@@ -54,6 +57,10 @@ h2{
 // Flexbox styles
 .flex{
     display:flex;
+}
+
+.justify-center{
+    justify-content: center;
 }
 
 .column{
@@ -111,6 +118,8 @@ fieldset{
         padding: 20px 50px;
         border-radius: 30px;
         text-transform: uppercase;
+        font-size: 2.2rem;
+        font-weight: 700;
     }
 
 }
@@ -160,28 +169,23 @@ fieldset{
 }
 
 .form{
-        align-items: center;
-        border: 2px solid $accent1;
-        border-radius: 10px;
-        margin:10px;
-        padding: 20px;
-        background:$secondary;  
-        
+    align-items: center;
+    border: 2px solid $accent1;
+    border-radius: 10px;
+    margin:10px;
+    padding: 20px;
+    background:$secondary; 
+
+    fieldset{
+        width:70%;
+    }
+
+    select{
+        width:100%;
+        text-align: center;
+    }
 }
 
- .action{
-            border:2px solid #f6f6f6;
-            border-radius: 10px;
-            background:$accent1;
-            padding:5px 10px;
-            color: #f6f6f6;
-}
-
-.action:hover, .action:focus{
-            border-color: $accent1;
-            background:#f6f6f6;
-            color: $accent1;
-}
 
 // MOVIES STYLES
 .movies {
@@ -221,6 +225,8 @@ fieldset{
 .reset {
     justify-content: center;
 }
+
+// MEDIA QUERIES
 
 @media (max-width: 800px) {
     .movie-area {

@@ -205,6 +205,10 @@ body {
   font-size: 1.8rem;
 }
 
+h1, h2, h3 {
+  text-align: center;
+}
+
 h1 {
   font-family: "Caveat", sans-serif;
   font-weight: 700;
@@ -212,7 +216,6 @@ h1 {
 }
 
 h2 {
-  text-align: center;
   font-size: 2.5rem;
 }
 
@@ -235,6 +238,12 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .column {
@@ -303,6 +312,8 @@ fieldset {
   padding: 20px 50px;
   border-radius: 30px;
   text-transform: uppercase;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 .queries {
@@ -356,18 +367,13 @@ fieldset {
   background: #ff935c;
 }
 
-.action {
-  border: 2px solid #f6f6f6;
-  border-radius: 10px;
-  background: #dc5353;
-  padding: 5px 10px;
-  color: #f6f6f6;
+.form fieldset {
+  width: 70%;
 }
 
-.action:hover, .action:focus {
-  border-color: #dc5353;
-  background: #f6f6f6;
-  color: #dc5353;
+.form select {
+  width: 100%;
+  text-align: center;
 }
 
 .movies {
