@@ -217,7 +217,7 @@ movieApp.resetForm = function() {
 }
 movieApp.goBack = function() {
     $('.movie-area').on('click', '.go-back', function(){
-        if ($(window).width() <= 600) {
+        if ($(window).width() <= 800) {
             $('.movies').fadeOut();
             $('.dinner').delay(500).fadeIn();
         } else {
@@ -226,7 +226,7 @@ movieApp.goBack = function() {
     });
 }
 movieApp.responsiveDisplay = function () {
-    if ($(window).width() <= 600) {
+    if ($(window).width() <= 800) {
         $('.dinner').fadeOut();
         $('.movies').delay(500).fadeIn();
     } else {

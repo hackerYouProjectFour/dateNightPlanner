@@ -246,7 +246,7 @@ h2 {
       flex-basis: 50%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .basis50 {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
@@ -359,6 +359,12 @@ fieldset {
   display: none;
 }
 
+.movie-area {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
 .movie-area p {
   margin: 0 0 25px 0;
 }
@@ -399,4 +405,10 @@ fieldset {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .movie-area {
+    position: initial;
+  }
 }
