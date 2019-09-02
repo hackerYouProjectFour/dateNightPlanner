@@ -216,18 +216,19 @@ h2 {
   font-size: 2.5rem;
 }
 
-.action {
-  border: 2px solid #f2f2f2;
-  border-radius: 10px;
+.skip-link {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
   background: #dc5353;
-  padding: 5px 10px;
-  color: #f2f2f2;
+  color: white;
+  padding: 10px 15px;
+  border: 2px solid white;
 }
 
-.action:hover, .action:focus {
-  border-color: #dc5353;
-  background: #f2f2f2;
-  color: #dc5353;
+.skip-link:focus {
+  left: 0;
 }
 
 .flex {
@@ -351,7 +352,7 @@ fieldset {
   margin: 5px;
 }
 
-.dinner .form {
+.form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -362,7 +363,7 @@ fieldset {
   background: #ff935c;
 }
 
-.dinner .form .action {
+.action {
   border: 2px solid #f6f6f6;
   border-radius: 10px;
   background: #dc5353;
@@ -370,17 +371,14 @@ fieldset {
   color: #f6f6f6;
 }
 
-.dinner .form .action:hover, .dinner .form .action:focus {
+.action:hover, .action:focus {
   border-color: #dc5353;
   background: #f6f6f6;
   color: #dc5353;
 }
 
-.movies {
-  display: none;
-}
-
 .movie-area {
+  display: none;
   position: -webkit-sticky;
   position: sticky;
   top: 20px;
@@ -408,18 +406,8 @@ fieldset {
   border: 2px solid #dc5353;
 }
 
-.movie-area .action {
-  border: 2px solid #f6f6f6;
-  border-radius: 10px;
-  background: #dc5353;
-  padding: 5px 10px;
-  color: #f6f6f6;
-}
-
-.movie-area .action:hover, .movie-area .action:focus {
-  border-color: #dc5353;
-  background: #f6f6f6;
-  color: #dc5353;
+.reminder {
+  padding: 67px 50px;
 }
 
 .reset {
