@@ -19,6 +19,8 @@ restaurantApp.queryParams.offset = 0;
 restaurantApp.restaurants = [];
 restaurantApp.cuisines = [];
 
+restaurantApp.errorsArray = [];
+
 // Make AJAX call to zomato to get the list of restaurants ad put them on the page
 
 restaurantApp.getRestaurantsList = () => {
@@ -52,10 +54,11 @@ restaurantApp.getRestorantInfo = () => {
         $('.card-area').html('');
         restaurantApp.queryParams.cuisine = $('#cuisine option:selected').val();
         restaurantApp.queryParams.price = parseInt($('#price option:selected').val());
-        for(let i = 0; i<=100; i = i+20){
+        // Must make 5 api calls for max amount of restaurants because the api returns only 20 at a time
+        for(let i = 0; i < 100; i = i+20){
             restaurantApp.queryParams.offset = i;
             restaurantApp.getInfo();
-        }    
+        }
     });
 }
 
@@ -75,20 +78,23 @@ restaurantApp.getInfo = () => {
         },
         dataType: 'json'
     }).then((res) => {
-        // save resuls from the array.
-        console.log(res);
+        // save results to the array.
         res.restaurants.forEach(function(place) {
             if (place.restaurant.price_range === restaurantApp.queryParams.price && place.restaurant.location.zipcode && place.restaurant.featured_image){
                 restaurantApp.restaurants.push(place.restaurant);
                 restaurantApp.displayInfo(place);
             }
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SHIT IS WRONG!
-            // if (!app.restaurantApp.restaurants.length){
-            //     alert('nothing found chech again');
-            // }
         });
-        
-    })
+    }).then(()=>{
+        if (restaurantApp.restaurants.length === 0){
+            restaurantApp.errorsArray.push(1);
+            let checkSum = restaurantApp.errorsArray.reduce((accumulator, currentValue) =>accumulator + currentValue, 0);
+            if (checkSum === 5){
+                console.log('nothing found');
+                
+            }
+        }
+    });
 }
 
 // This function over here makes stars appear in the rating
@@ -97,7 +103,7 @@ restaurantApp.starRating = (rating) => {
     let starArray = [];
     // check if the input making sense
     if (!isNaN(rating) && 0 <= rating && rating <= 5 ){
-        // convert the decimal stars to half stars because 
+        // convert the decimal stars to half stars because users dont responr well to quater stars i guess
         const halfStar = rating % 1;
         const fullStar = Math.floor(rating);
         if(!rating){
@@ -120,7 +126,7 @@ restaurantApp.starRating = (rating) => {
 }
 // Display restaurant  data on the page
 restaurantApp.displayInfo = function(place) {
-    console.log(place);
+    // console.log(place);
     $('.card-area').append(`
         <div class="restaurant-card flex">
             <div class="card-content basis75">
@@ -140,6 +146,13 @@ restaurantApp.displayInfo = function(place) {
         </div>
     `);
 }
+
+restaurantApp.ifEmpty = () => {
+    if (restaurantApp.restaurants.length === 0){
+        alert ('nothing found');
+    }
+}
+
 // Start reastaurant app
 restaurantApp.init = () => {
     restaurantApp.getRestaurantsList();
@@ -204,7 +217,7 @@ movieApp.storeData = function () {
             };
             movieApp.movieObj[theatreName][movieName].push(showTimes);
         });
-        console.log(movieApp.movieObj);
+        // console.log(movieApp.movieObj);
     });
 };
 
