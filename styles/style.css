@@ -431,6 +431,10 @@ fieldset {
           justify-content: center;
 }
 
+.go-back {
+  margin-right: 10px;
+}
+
 @media (max-width: 800px) {
   .movie-area {
     position: initial;
