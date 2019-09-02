@@ -419,9 +419,6 @@ fieldset {
   .movie-area {
     position: initial;
   }
-}
-
-@media (max-width: 800px) {
   .basis50 {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
