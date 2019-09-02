@@ -376,10 +376,6 @@ fieldset {
   text-align: center;
 }
 
-.movies {
-  position: absolute;
-}
-
 .movie-area {
   display: none;
   position: -webkit-sticky;
@@ -429,6 +425,9 @@ fieldset {
   .basis50 {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
+  }
+  .movies {
+    position: absolute;
   }
   .reminder {
     display: none;
