@@ -218,19 +218,23 @@ movieApp.resetForm = function() {
 movieApp.goBack = function() {
     $('.movie-area').on('click', '.go-back', function(){
         if ($(window).width() <= 800) {
-            $('.movies').fadeOut();
+            $('.movie-area').fadeOut();
+            $('.reminder').delay(500).fadeIn();
             $('.dinner').delay(500).fadeIn();
         } else {
-            $('.movies').fadeOut();
+            $('.movie-area').fadeOut();
+            $('.reminder').delay(500).fadeIn();
         }
     });
 }
 movieApp.responsiveDisplay = function () {
     if ($(window).width() <= 800) {
         $('.dinner').fadeOut();
-        $('.movies').delay(500).fadeIn();
+        $('.reminder').fadeOut();
+        $('.movie-area').delay(500).fadeIn();
     } else {
-        $('.movies').delay(500).fadeIn();
+        $('.movie-area').delay(500).fadeIn();
+        $('.reminder').fadeOut();
     }
 }
 

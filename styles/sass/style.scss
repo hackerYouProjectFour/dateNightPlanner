@@ -40,6 +40,20 @@ h2{
     font-size: 2.5rem;
 }
 
+.skip-link {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: $accent1;
+  color:white;
+  padding: 10px 15px;
+  border: 2px solid white;
+}
+
+.skip-link:focus {
+  left: 0;
+}
 
 
 // Flexbox styles
@@ -146,7 +160,9 @@ fieldset{
             margin: 5px;
         }
     }
-    .form{
+}
+
+.form{
         align-items: center;
         border: 2px solid $accent1;
         border-radius: 10px;
@@ -154,27 +170,25 @@ fieldset{
         padding: 20px;
         background:$secondary;  
         
-        .action{
+}
+
+ .action{
             border:2px solid #f6f6f6;
             border-radius: 10px;
             background:$accent1;
             padding:5px 10px;
             color: #f6f6f6;
-        }
+}
 
-        .action:hover, .action:focus{
+.action:hover, .action:focus{
             border-color: $accent1;
             background:#f6f6f6;
             color: $accent1;
-        }
-    }
 }
 
 // MOVIES STYLES
-.movies {
-    display: none;
-}
 .movie-area {
+    display: none;
     position: sticky;
     top: 20px;
     p {
@@ -199,19 +213,10 @@ fieldset{
         background: $primary;
         border: 2px solid $accent1;
     }
-    .action{
-            border:2px solid #f6f6f6;
-            border-radius: 10px;
-            background:$accent1;
-            padding:5px 10px;
-            color: #f6f6f6;
-        }
+}
 
-    .action:hover, .action:focus{
-            border-color: $accent1;
-            background:#f6f6f6;
-            color: $accent1;
-    }
+.reminder {
+    padding: 67px 50px;
 }
 .reset {
     justify-content: center;
