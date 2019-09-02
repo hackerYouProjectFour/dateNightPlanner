@@ -251,11 +251,6 @@ h2 {
       flex-basis: 25%;
 }
 
-.basis0 {
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
-}
-
 fieldset {
   border: none;
 }
@@ -355,4 +350,17 @@ fieldset {
 .movie-area h3 {
   margin-bottom: 25px;
   text-transform: uppercase;
+}
+
+.movie-area h4 {
+  margin: 0 0 10px 0;
+  text-transform: capitalize;
+}
+
+.movie-area .theatre-card {
+  margin: 10px;
+  padding: 30px;
+  border-radius: 5px;
+  background: #f9e090;
+  border: 2px solid #dc5353;
 }
