@@ -210,31 +210,6 @@ movieApp.getTodaysDate = function () {
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 };
-movieApp.resetForm = function() {
-    $('.movie-area').on('click', '.reset-button', function(){
-        location.reload(true);
-    });
-}
-movieApp.goBack = function() {
-    $('.movie-area').on('click', '.go-back', function(){
-        if ($(window).width() <= 800) {
-            $('.movie-area').fadeOut();
-            $('.dinner').delay(500).fadeIn();
-        } else {
-            $('.movie-area').fadeOut();
-            $('.reminder').delay(500).fadeIn();
-        }
-    });
-}
-movieApp.responsiveDisplay = function () {
-    if ($(window).width() <= 800) {
-        $('.dinner').fadeOut();
-        $('.movie-area').delay(500).fadeIn();
-    } else {
-        $('.movie-area').delay(500).fadeIn();
-        $('.reminder').fadeOut();
-    }
-}
 
 movieApp.addTheatre = function () {
     for (let theatre in movieApp.movieObj) {
@@ -258,9 +233,6 @@ movieApp.addTheatre = function () {
             });
         };
     };
-    $('.movie-area').append(`
-        <div class='reset flex'><button class="go-back action">Go Back!</button><button class='reset-button action'>Reset</button></div>
-    `)
 };
 
 movieApp.storeData = function () {
@@ -298,15 +270,26 @@ movieApp.displayOptions = function() {
         $('.movie-area').html('')
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        movieApp.responsiveDisplay();
+        // movieApp.responsiveDisplay();
+        $('.modal').css('display', 'block');
     })
 };
+
+movieApp.closeModal = function() {
+    $('.movies').on('click', '.close', function(){
+        $('.modal').css('display', 'none').addClass('is-open');
+    })
+    $('body').on('click', function(event){
+        if (!$(event.target).closest(".modal-content, .is-open").length && !$(event.target).closest('.card-area').length) {
+            $(".modal").css('display', 'none');
+        }
+    });
+}
 
 movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
-    movieApp.resetForm();
-    movieApp.goBack();
+    movieApp.closeModal();
 }
 
 
