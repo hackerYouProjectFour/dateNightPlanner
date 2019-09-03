@@ -49,7 +49,7 @@ restaurantApp.getRestorantInfo = () => {
     // Creat object to hold user picked info
     restaurantApp.userPicks = {};
     $('.dinnerForm').on('submit', (e) =>{
-        // RESET EVERYTHING!!!!!
+        // RESET EVERYTHING!
         restaurantApp.resetAll();
         e.preventDefault();
         $('.card-area').html('');
@@ -130,13 +130,12 @@ restaurantApp.starRating = (rating) => {
 }
 // Display restaurant  data on the page
 restaurantApp.displayInfo = function(place) {
-    // console.log(place);
     $('.card-area').append(`
-        <div class="restaurant-card flex">
+        <div class="restaurant-card flex basis45">
             <div class="card-content basis75">
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
-                <p class="phone">${place.restaurant.phone_numbers}</p>
+                <p class="phone"><em>${place.restaurant.phone_numbers.replace(/^\+[0-9]/, '')}</em></p>
                 <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
             <div class="card-right flex column basis25 justify-center">
