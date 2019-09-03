@@ -203,7 +203,6 @@ html {
 
 body {
   font-size: 1.8rem;
-  font-family: 'Roboto', sans-serif;
 }
 
 h1, h2, h3 {
@@ -280,14 +279,14 @@ h2 {
       flex-basis: 100%;
 }
 
-.basis50 {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-}
-
 .basis45 {
   -ms-flex-preferred-size: 45%;
       flex-basis: 45%;
+}
+
+.basis50 {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
 }
 
 .basis75 {
@@ -408,16 +407,6 @@ fieldset {
   text-align: center;
 }
 
-.reminder, .movie-area {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
-}
-
-.movie-area {
-  display: none;
-}
-
 .movie-area p {
   margin: 0 0 25px 0;
 }
@@ -442,16 +431,6 @@ fieldset {
 
 .reminder {
   padding: 67px 50px;
-}
-
-.reset {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.go-back {
-  margin-right: 10px;
 }
 
 @media (max-width: 900px) {
@@ -498,4 +477,69 @@ fieldset {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
   }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  overflow-y: auto;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 5% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+  overflow: initial;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.warning {
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.instructions {
+  text-align: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5px;
 }

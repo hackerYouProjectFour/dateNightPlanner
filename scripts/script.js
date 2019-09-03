@@ -49,7 +49,7 @@ restaurantApp.getRestorantInfo = () => {
     // Creat object to hold user picked info
     restaurantApp.userPicks = {};
     $('.dinnerForm').on('submit', (e) =>{
-        // RESET EVERYTHING!
+        // RESET EVERYTHING!!!!!
         restaurantApp.resetAll();
         e.preventDefault();
         $('.card-area').html('');
@@ -130,6 +130,7 @@ restaurantApp.starRating = (rating) => {
 }
 // Display restaurant  data on the page
 restaurantApp.displayInfo = function(place) {
+    // console.log(place);
     $('.card-area').append(`
         <div class="restaurant-card flex basis45">
             <div class="card-content basis75">
@@ -200,8 +201,6 @@ movieApp.displayError = function() {
             <div class='theatre-card flex column'>
             <h3>I'm sorry, we were unable to find any theatres or showtimes close to the restaurant you've selected.</h3>
             </div>
-            <div class='reset flex'><button class="go-back action">Go Back!</button><button class='reset-button action'>Reset</button></div>
-            
         `);
 };
 movieApp.getTodaysDate = function () {
@@ -269,7 +268,6 @@ movieApp.displayOptions = function() {
         $('.movie-area').html('')
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        // movieApp.responsiveDisplay();
         $('.modal').css('display', 'block');
     })
 };
@@ -298,5 +296,3 @@ app.init = function () {
 $(function() {
     app.init();
 });
-
-// TEST
