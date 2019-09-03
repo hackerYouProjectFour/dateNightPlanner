@@ -132,11 +132,11 @@ restaurantApp.starRating = (rating) => {
 restaurantApp.displayInfo = function(place) {
     // console.log(place);
     $('.card-area').append(`
-        <div class="restaurant-card flex">
+        <div class="restaurant-card flex basis45">
             <div class="card-content basis75">
                 <h3>${place.restaurant.name}</h3>
                 <p class="address"> ${place.restaurant.location.address}</p>
-                <p class="phone">${place.restaurant.phone_numbers}</p>
+                <p class="phone"><em>${place.restaurant.phone_numbers.replace(/^\+[0-9]/, '')}</em></p>
                 <div class="stars">Rating: ${restaurantApp.starRating(place.restaurant.user_rating.aggregate_rating)}</div>
             </div>
             <div class="card-right flex column basis25 justify-center">
@@ -201,8 +201,6 @@ movieApp.displayError = function() {
             <div class='theatre-card flex column'>
             <h3>I'm sorry, we were unable to find any theatres or showtimes close to the restaurant you've selected.</h3>
             </div>
-            <div class='reset flex'><button class="go-back action">Go Back!</button><button class='reset-button action'>Reset</button></div>
-            
         `);
 };
 movieApp.getTodaysDate = function () {
@@ -270,15 +268,11 @@ movieApp.displayOptions = function() {
         $('.movie-area').html('')
         movieApp.zip = $(this).val();
         movieApp.storeData();
-        // movieApp.responsiveDisplay();
         $('.modal').css('display', 'block');
     })
 };
 
 movieApp.closeModal = function() {
-    $('.movies').on('click', '.close', function(){
-        $('.modal').css('display', 'none').addClass('is-open');
-    })
     $('body').on('click', function(event){
         if (!$(event.target).closest(".modal-content, .is-open").length && !$(event.target).closest('.card-area').length) {
             $(".modal").css('display', 'none');
@@ -302,5 +296,3 @@ app.init = function () {
 $(function() {
     app.init();
 });
-
-// TEST

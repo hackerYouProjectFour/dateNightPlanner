@@ -90,6 +90,10 @@ h2{
     flex-basis:100%;
 }
 
+.basis45{
+    flex-basis:45%;
+}
+
 .basis50{
     flex-basis: 50%;
 }
@@ -150,6 +154,12 @@ fieldset{
 // DINNER STYLES
 .dinner{
 
+    .card-area{        
+       flex-direction: row;        
+       flex-wrap: wrap;        
+       justify-content: center;        
+   }
+
     .restaurant-card, .not-found{
         margin:10px;
         padding: 30px;
@@ -178,6 +188,7 @@ fieldset{
     .restaurant-picture{
         img{
             max-width:170px;
+            max-height: 140px;
             height: auto;
             align-self: center;
             margin: 5px;
@@ -233,6 +244,15 @@ fieldset{
 
 // MEDIA QUERIES
 
+@media (max-width: 900px){
+    .restaurant-card{
+        flex-direction: column;
+        .restaurant-picture{
+            align-self: center;
+        }
+    }
+}
+
 @media (max-width: 800px) {
     .movie-area {
         position: initial;
@@ -252,23 +272,21 @@ fieldset{
     }
 }
 
-@media (max-width: 430px){
+@media (max-width: 530px){
     .hero{
         .jumbotron{
             width:75%;
         }
     }
 
-    .restaurant-card{
-        flex-direction: column;
-        .restaurant-picture{
-            align-self: center;
-        }
-    }
-
     .action, fieldset{
         width:100%;
     }
+
+    .restaurant-card{
+        flex-basis: 100%;
+    }
+
 }
 
 /* The Modal (background) */

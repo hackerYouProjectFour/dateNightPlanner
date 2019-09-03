@@ -279,6 +279,11 @@ h2 {
       flex-basis: 100%;
 }
 
+.basis45 {
+  -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
+}
+
 .basis50 {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
@@ -338,6 +343,18 @@ fieldset {
   background-image: linear-gradient(to bottom, #000000 0%, #414141 20%);
 }
 
+.dinner .card-area {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .dinner .restaurant-card, .dinner .not-found {
   margin: 10px;
   padding: 30px;
@@ -366,6 +383,7 @@ fieldset {
 
 .dinner .restaurant-picture img {
   max-width: 170px;
+  max-height: 140px;
   height: auto;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -415,6 +433,20 @@ fieldset {
   padding: 67px 50px;
 }
 
+@media (max-width: 900px) {
+  .restaurant-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .restaurant-card .restaurant-picture {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
 @media (max-width: 800px) {
   .movie-area {
     position: initial;
@@ -434,23 +466,16 @@ fieldset {
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 530px) {
   .hero .jumbotron {
     width: 75%;
   }
-  .restaurant-card {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .restaurant-card .restaurant-picture {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-  }
   .action, fieldset {
     width: 100%;
+  }
+  .restaurant-card {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
   }
 }
 
