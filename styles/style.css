@@ -486,24 +486,7 @@ fieldset {
   overflow: initial;
 }
 
-/* The Close Button */
-.close {
-  color: white;
-  position: fixed;
-  left: 20px;
-  top: 20px;
-  margin-right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
+/* The Close */
 .warning {
   text-align: center;
   color: white;

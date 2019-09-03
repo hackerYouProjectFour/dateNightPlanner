@@ -276,9 +276,6 @@ movieApp.displayOptions = function() {
 };
 
 movieApp.closeModal = function() {
-    $('.movies').on('click', '.close', function(){
-        $('.modal').css('display', 'none').addClass('is-open');
-    })
     $('body').on('click', function(event){
         if (!$(event.target).closest(".modal-content, .is-open").length && !$(event.target).closest('.card-area').length) {
             $(".modal").css('display', 'none');
