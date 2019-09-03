@@ -19,7 +19,6 @@ restaurantApp.queryParams.count = 20;
 restaurantApp.queryParams.offset = 0;
 restaurantApp.restaurants = [];
 restaurantApp.cuisines = [];
-
 restaurantApp.errorsArray = [];
 
 // Make AJAX call to zomato to get the list of restaurants ad put them on the page
@@ -173,7 +172,7 @@ restaurantApp.init = () => {
 // ================================================================================================
 const movieApp = {};
 
-movieApp.showtimeUrl = `http://data.tmsapi.com/v1.1/movies/showings`;
+movieApp.showtimeUrl = `https://data.tmsapi.com/v1.1/movies/showings`;
 // movieApp.apiKey = `asa363es8bybmdvt64csjra7`;
 movieApp.apiKey = `gzt7vyqbw7ukmn5z5a7kt4um`;
 movieApp.zip = ``;
