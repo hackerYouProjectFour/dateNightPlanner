@@ -180,6 +180,7 @@ movieApp.theatreList = {};
 movieApp.data = [];
 movieApp.theatres = [];
 movieApp.movieObj = {};
+// PULLS DATA FROM SHOWTIME API
 movieApp.pullData = function () {
     return $.ajax({
         url: movieApp.showtimeUrl,
@@ -192,10 +193,12 @@ movieApp.pullData = function () {
             radius: movieApp.radius,
             units: movieApp.units
         },
+    // RETURNS ERROR MESSAGE IF MOVIES ARE UNABLE TO BE PULLED
     }).fail((error) => {
         movieApp.displayError();
     });
 };
+// APPENDS ERROR MESSAGE TO MODAL BOX IF NO MOVIE SHOWTIMES FOUND
 movieApp.displayError = function() {
     $('.movie-area').append(`
             <div class='theatre-card flex column'>
@@ -203,25 +206,30 @@ movieApp.displayError = function() {
             </div>
         `);
 };
+// GETS THE CURRENT DATE TO FEED INTO THE API CALL DATA
 movieApp.getTodaysDate = function () {
     const today = new Date();
+    // CONVERTS DATE TO FORMAT ACCEPTED BY API
     const date = today.getFullYear() + `-` + ('0' + (today.getMonth() + 1)).slice(-2) + `-` + ('0' + today.getDate()).slice(-2);
     return date;
 };
-
+// APPENDS SHOWTIMES TO THE MODAL BOX ON THE DOM
 movieApp.addTheatre = function () {
     for (let theatre in movieApp.movieObj) {
+        // ADDS EACH THEATRE TO THE MODAL BOX
         $('.movie-area').append(`
             <div class='theatre-card ${theatre.replace(/[^a-zA-Z0-9]/g, "")} flex column'>
             <h3>${theatre}</h3>
             </div>
         `);
+        // ADDS EACH MOVIE TO THE CORRECT THEATRE
         for (let movie in movieApp.movieObj[theatre]) {
             $(`.${theatre.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
                 <div class='${movie.replace(/[^a-zA-Z0-9]/g, "")}'>
                 <h4>${movie}</h4>
                 </div>
             `);
+            // ADDS EACH SHOWTIME TO THE CORRECT MOVIE AT THE CORRECT THEATRE
             movieApp.movieObj[theatre][movie].forEach(function (item) {
                 $(`.${movie.replace(/[^a-zA-Z0-9]/g, "")}`).append(`
                         <div class="showtimes column flex">
@@ -232,7 +240,38 @@ movieApp.addTheatre = function () {
         };
     };
 };
-
+// REMOVES DUPLICATE THEATRE ENTREIES THAT ARE RECEIVED FROM THE API
+movieApp.duplicateRemover = function(list) {
+    //CONVERTS DATA TO A SET TO REMOVE DUPLICATES
+    const uniqueSet = new Set(list);
+    //CONVERTS THE DATA BACK TO AN ARRAY
+    movieApp.theatreList = [...uniqueSet];
+    //ADDS EACH ITEM IN THE ARRAY BACK TO THE CORRECT OBJECT
+    movieApp.theatreList.forEach(function (item) {
+        movieApp.movieObj[item] = {};
+    })
+}
+// ORGANIZES THE DATA FROM THE API INTO AN ARRAY OF OBJECTS SORTED BY THEATRE -> MOVIE NAME -> SHOWTIMES
+movieApp.movieSorter = function(data) {
+    data.forEach(function (item) {
+        let movieName = item.title;
+        let theatreName = item.showtimes[0].theatre.name;
+        let showTimes = [];
+        //ADDS EACH MOVIE TO THE CORRECT THEATRE IN THE OBJECT
+        if (movieApp.theatreList.includes(theatreName)) {
+            movieApp.movieObj[theatreName][movieName] = [];
+        }
+        // ADDS THE SHOWTIMES AS AN ARRAY TO THE CORRECT MOVIE
+        for (i = 0; i < item.showtimes.length; i++) {
+            showTimes.push(item.showtimes[i].dateTime);
+        };
+        // CUTS OUT THE DATE AND CONVERTS THE TIME TO A READABLE FORMAT
+        let apendedTimes = showTimes.map(item => item.slice(11));
+        let spacedTimes = apendedTimes.map(item => item = ` ` + item);
+        movieApp.movieObj[theatreName][movieName].push(spacedTimes);
+    });
+}
+// RUNS THE FUNCTIONS TO CALL THE DATA THEN SORT EACH ENTRY INTO AN ARRAY OF OBJECTS FOR USE BY THE APP
 movieApp.storeData = function () {
     movieApp.pullData().then(function (results) {
         const duplicateTheatres = [];
@@ -240,46 +279,35 @@ movieApp.storeData = function () {
         results.forEach(function (result) {
             duplicateTheatres.push(result.showtimes[0].theatre.name);
         })
-        const uniqueSet = new Set(duplicateTheatres);
-        movieApp.theatreList = [...uniqueSet];
-        movieApp.theatreList.forEach(function (item) {
-            movieApp.movieObj[item] = {};
-        })
-        fullData.forEach(function (item) {
-            let movieName = item.title;
-            let theatreName = item.showtimes[0].theatre.name;
-            let showTimes = [];
-            if (movieApp.theatreList.includes(theatreName)) {
-                movieApp.movieObj[theatreName][movieName] = [];
-            }
-            for (i = 0; i < item.showtimes.length; i++) {
-                showTimes.push(item.showtimes[i].dateTime);
-            };
-            let apendedTimes = showTimes.map(item => item.slice(11));
-            let spacedTimes = apendedTimes.map(item => item = ` ` + item);
-            movieApp.movieObj[theatreName][movieName].push(spacedTimes);
-        });
+        movieApp.duplicateRemover(duplicateTheatres);
+        movieApp.movieSorter(fullData);
         movieApp.addTheatre();
     });
 };
-
+// RUNS THE APP WHEN THE RESTAURANT SELECTION IS MADE
 movieApp.displayOptions = function() {
+    // LISTENS FOR CLICK TO DETERMINE THE SELECTED RESTAURANT
     $('.card-area').on('click', 'button', function(){
+        // CLEARS THE ENTRIES IF THERE HAS ALREADY BEEN A SELECTION
         $('.movie-area').html('')
+        // PULLS THE POSTAL CODE FROM THE VALUE OF THE BUTTON
         movieApp.zip = $(this).val();
+        // THE THE FUNCTION TO STORE AND SORT THE DATA
         movieApp.storeData();
+        // OPENS THE MODAL BOX TO DISPLAY RESULTS
         $('.modal').css('display', 'block');
     })
 };
 
+// CLOSES THE MODAL WHEN USER CLICKS OUTSIDE THE BOX
 movieApp.closeModal = function() {
     $('body').on('click', function(event){
-        if (!$(event.target).closest(".modal-content, .is-open").length && !$(event.target).closest('.card-area').length) {
+        if (!$(event.target).closest(".modal-content").length && !$(event.target).closest('.card-area').length) {
             $(".modal").css('display', 'none');
         }
     });
 }
-
+// INITIALIZES THE MOVIE APP
 movieApp.init = function () {
     movieApp.getTodaysDate();
     movieApp.displayOptions();
