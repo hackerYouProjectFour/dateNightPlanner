@@ -32,7 +32,10 @@ restaurantApp.getRestaurantsList = () => {
             apikey : restaurantApp.queryParams.apiKey,
             city_id : restaurantApp.queryParams.cityCode
         },
-        dataType: 'json'
+        dataType: 'json',
+        error: function () {
+            console.log('SOMETHING WENT WRONG!!!!');
+        }
     }).then(res => {
         res.cuisines.forEach( item => {
             restaurantApp.cuisines.push({
@@ -79,7 +82,7 @@ restaurantApp.getInfo = () => {
         },
         dataType: 'json',
         error: function() {
-            console.log('SOMETHIGN WENT WRONG!!!!');
+            console.log('SOMETHING WENT WRONG!!!!');
         }
     }).then((res) => {
         // save results to the array.
@@ -202,7 +205,7 @@ movieApp.pullData = function () {
 movieApp.displayError = function() {
     $('.movie-area').append(`
             <div class='theatre-card flex column'>
-            <h3>I'm sorry, we were unable to find any theatres or showtimes close to the restaurant you've selected.</h3>
+            <h3>I'm sorry, we can't find any showtimes nearby.</h3>
             </div>
         `);
 };

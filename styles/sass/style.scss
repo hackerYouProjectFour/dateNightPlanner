@@ -253,25 +253,6 @@ fieldset{
     }
 }
 
-@media (max-width: 800px) {
-    .movie-area {
-        position: initial;
-    }
-    .basis50 {
-        flex-basis: 100%;
-    }
-
-    .movies {
-        position: absolute;
-    }
-
-    .reminder {
-        display: none;
-        position: absolute;
-        flex-basis: 0;
-    }
-}
-
 @media (max-width: 530px){
     .hero{
         .jumbotron{
